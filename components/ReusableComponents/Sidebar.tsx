@@ -11,7 +11,8 @@ import {
     ProfileIcon,
     SettingsIcon,
     LogoutIcon,
-    DarkModeIcon
+    DarkModeIcon,
+    DashboardIcon
 } from "@/components/ReusableComponents/Icon";
 import { usePathname } from "next/navigation";
 
@@ -19,10 +20,10 @@ export const Sidebar: React.FC = () => {
     const pathname = usePathname(); 
 
     const contents = [
-        { href: "/home", icon: <HomeIcon />, text: "Home", key: "home" },
+        { href: "/", icon: <HomeIcon />, text: "Home", key: "home" },
+        { href: "/dashboard", icon: <DashboardIcon />, text: "Dashboard", key: "dashboard" },
         { href: "/invoice", icon: < InvoiceIcon />, text: "Invoice", key: "invoice" },
         { href: "/profile", icon: < ProfileIcon />, text: "Profile", key: "profile" },
-        { href: "/settings", icon: <SettingsIcon />, text: "Settings", key: "settings" },
         { href: "/darkmode", icon: <DarkModeIcon />, text: "Darkmode", key: "darkmode" },
         { href: "/logout", icon: <LogoutIcon />, text: "Logout", key: "logout" },
     ];

@@ -8,6 +8,7 @@ import { IoSettingsOutline as SettingsIcon } from "react-icons/io5";
 import { CgProfile as ProfileIcon } from "react-icons/cg";
 import { LuMoon as DarkModeIcon } from "react-icons/lu";
 import { TbLogout2 as LogoutIcon } from "react-icons/tb";
+import { CiViewList as DashboardIcon } from "react-icons/ci";
 
 //HomePage Icons    
 
@@ -34,6 +35,7 @@ export {
     SettingsIcon,
     LogoutIcon,
     DarkModeIcon,
+    DashboardIcon,
     NotificationIcon,
     ProfileIcon2,
     CarIcon,

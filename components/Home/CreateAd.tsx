@@ -14,7 +14,7 @@ function CreateAd() {
                 It seems like you haven't set up any advertisements.
             </span>
 
-            <Link href="/ad/Form1">
+            <Link href="/create-ad">
                 <Button className="bg-[#4F8AFF] w-[200px] h-[44px] text-white rounded-[23px] flex items-center justify-center gap-2 mt-6">
                     Create Ad <AddIcon className="w-6 h-6" />
                 </Button>

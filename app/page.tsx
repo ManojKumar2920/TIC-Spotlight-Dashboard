@@ -1,9 +1,28 @@
-import Image from "next/image";
+import CreateAd from '@/components/Home/CreateAd'
+import LiveMap from '@/components/Home/LiveMap'
+import TopNav from '@/components/Home/TopNav'
+import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
+import React from 'react'
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      Dashboard
-    </div>
-  );
+const page = () => {
+
+
+    return (
+        <div>
+            <SidebarLayout>
+                <TopNav />
+                <div className="flex gap-x-4 pl-3 pr-3 mt-3 flex-grow h-screen">
+                    <div className="flex-1 flex items-stretch justify-center rounded-[12px] bg-white">
+                        <CreateAd />
+                    </div>
+                    <div className="flex-1 flex items-stretch justify-center rounded bg-white ">
+                        <LiveMap />
+                    </div>
+                </div>
+            </SidebarLayout>
+
+        </div>
+    )
 }
+
+export default page

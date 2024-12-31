@@ -29,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${objectivity.variable} antialiased`}
       >
+
         {children}
       </body>
     </html>
