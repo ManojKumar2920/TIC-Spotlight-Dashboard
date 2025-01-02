@@ -2,11 +2,22 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
 
+
 const objectivity = localFont({
   src: [
     {
       path: '../fonts/Objectivity.woff2',
       weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Objectivity_Medium.woff2',
+      weight: '500', 
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Objectivity_ExtraBold.woff2',
+      weight: '700', 
       style: 'normal',
     },
   ],
@@ -29,7 +40,6 @@ export default function RootLayout({
       <body
         className={`${objectivity.variable} antialiased`}
       >
-
         {children}
       </body>
     </html>

@@ -22,7 +22,7 @@ const OrderSummary = () => {
 
   return (
     <div className="flex flex-grow flex-col space-y-6 p-5 h-full">
-      <h1 className="text-xl font-bold">
+      <h1 className="text-4xl font-bold">
         Order
         <br />
         Summary
@@ -31,12 +31,12 @@ const OrderSummary = () => {
         {Hours.map((hour, index) => (
           <div
             key={index}
-            className="flex flex-row justify-between w-[200px] h-[90px] border border-[#E9EAF8] rounded-[10px] p-2 relative"
+            className="flex flex-row justify-between w-[200px] h-[90px] border border-[#E9EAF8] p-2 relative rounded-[12px]"
           >
             <div className="text-left">
-              <span className="text-lg block font-semibold">{hour.value}</span>
+              <span className="text-xl block font-medium">{hour.value}</span>
 
-              <span className="text-sm">{hour.label}</span>
+              <span className="text-base">{hour.label}</span>
             </div>
             <div className="absolute bottom-2 right-2">
               <Image src={hour.image} alt={hour.label} width={24} height={24} />
@@ -48,7 +48,7 @@ const OrderSummary = () => {
       <div className="rounded-md p-4 mt-4 space-y-4">
         {taxDetails.map((detail, index) => (
           <div key={index} className="flex justify-between py-1">
-            <span className="text-sm font-semibold">{detail.label}</span>
+            <span className="text-sm f">{detail.label}</span>
             <span className="text-sm">{detail.value}</span>
           </div>
         ))}

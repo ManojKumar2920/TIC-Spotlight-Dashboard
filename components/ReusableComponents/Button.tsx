@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick?: () => void; // Optional onClick handler
+  onClick?: () => void; 
   disabled?: boolean;
   className?: string;
 }
@@ -10,10 +10,10 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ children, onClick, disabled = false, className }) => {
   return (
     <button
-      onClick={onClick} // Pass the onClick handler here
+      onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-2 rounded-lg focus:outline-none ${className} ${
-        disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
+      className={`px-4 py-2 rounded-[30px] text-center focus:outline-none ${className} ${
+        disabled ? 'opacity-50 cursor-not-allowed' : ''
       }`}
     >
       {children}

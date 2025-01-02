@@ -1,30 +1,43 @@
 import React from 'react';
 
 interface LabelInputProps {
-  label: string;
-  type?: string;
-  name: string;
+  labelText: string;
+  htmlFor: string;
+  type: string;
   value: string;
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   required?: boolean;
+  placeholder?: string;
+  name?: string; 
 }
 
-const LabelInput: React.FC<LabelInputProps> = ({ label, type = 'text', name, value, placeholder, required = false }) => {
+const LabelInput: React.FC<LabelInputProps> = ({
+  labelText,
+  htmlFor,
+  type,
+  value,
+  onChange,
+  required = false,
+  placeholder = '',
+  name = '',
+}) => {
   return (
     <div className="mb-4">
-      <label className="block text-sm font-medium text-gray-700">
-        {label}
-        {required && <span className="text-red-500">*</span>}
+      <label
+        htmlFor={htmlFor}
+        className="block  text-sm font-medium leading-[19px]"
+      >
+        {labelText}
+        {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <input
         type={type}
-        name={name}
+        id={htmlFor}
         value={value}
-        // onChange={onChange}
+        onChange={onChange}
         placeholder={placeholder}
-        required={required}
-        className="mt-1 block w-full px-3 py-2 rounded-[25px] bg-[#FAFBFC] shadow-sm focus:outline-none sm:text-sm"
+        name={name} 
+        className="w-full h-[44px] rounded-[25px] px-6 py-2 mt-2 bg-[#FAFBFC]  text-sm leading-[19px] focus:outline-none"
       />
     </div>
   );

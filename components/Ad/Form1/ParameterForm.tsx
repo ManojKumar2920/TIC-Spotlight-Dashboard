@@ -3,18 +3,19 @@
 import React, { useState } from "react";
 import { IconTwo } from "../../ReusableComponents/Icon";
 import Image from "next/image";
-import Select from "../../ReusableComponents/SelectInput";
+import Select from "../../ReusableComponents/Select";
 import { LocationData } from "@/Data/LocationData";
 import { FrequencyData } from "@/Data/FrequencyData";
 import Button from "@/components/ReusableComponents/Button";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
-const ParameterForm = () => {
+
+const ParameterForm = ({ onNext }: { onNext: () => void }) => {
     const timeOptions = [
         { value: "24/7", label: "Day & night" },
         { value: "7AM-11PM", label: "Full day" },
         { value: "1PM-1PM", label: "Evening" },
-        { value: "7Am-1PM", label: "Morning" },
+        { value: "7AM-1PM", label: "Morning" },
     ];
 
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -24,19 +25,13 @@ const ParameterForm = () => {
     const [agreeFrequency, setAgreeFrequency] = useState(false);
     const router = useRouter();
 
-
-    const handleNextButton = () => {
-        router.push("/ad/Form2");
-    }
-
-    const handleLocationChange = (
-        event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOption = LocationData.find((option) => option.value === event.target.value);
         setLocation(selectedOption);
     };
 
-    const handleFrequencyChange = (
-        event: React.ChangeEvent<HTMLSelectElement>) => {const selectedOption = FrequencyData.find((option) => option.value === event.target.value);
+    const handleFrequencyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedOption = FrequencyData.find((option) => option.value === event.target.value);
         setFrequency(selectedOption);
     };
 
@@ -55,7 +50,7 @@ const ParameterForm = () => {
     return (
         <div className="flex flex-grow flex-col space-y-7 p-5">
             <div className="flex items-center space-x-2">
-                <Image src={IconTwo} alt="icon" />
+                <Image src={IconTwo} alt="icon" width={32} height={32} />
                 <span>Parameters & Media</span>
             </div>
 
@@ -69,26 +64,23 @@ const ParameterForm = () => {
                     placeholder="Select"
                 />
                 <div className="flex items-center">
-                <input
-                    type="checkbox"
-                    id="agreeLocation"
-                    name="agreeLocation"
-                    checked={agreeLocation}
-                    onChange={handleLocationCheckboxChange}
-                    className="h-4 w-4 text-black border-gray-300 rounded accent-black"
-                />
-                <div>
+                    <input
+                        type="checkbox"
+                        id="agreeLocation"
+                        name="agreeLocation"
+                        checked={agreeLocation}
+                        onChange={handleLocationCheckboxChange}
+                        className="h-4 w-4 text-black border-gray-300 rounded accent-black"
+                    />
                     <label
                         htmlFor="agreeLocation"
-                        className="ml-1 block text-sm text-black"
+                        className="ml-2 text-sm text-black"
+                        style={{ fontSize: "12px", fontWeight: "500" }}
                     >
                         Enter City ( Mumbai )
                     </label>
                 </div>
             </div>
-            </div>
-
-            
 
             <div>
                 <Select
@@ -97,56 +89,48 @@ const ParameterForm = () => {
                     options={FrequencyData}
                     value={Frequency?.value}
                     onChange={handleFrequencyChange}
-                    placeholder="Select Frequency"
-                />
+                    placeholder="Select Frequency" />
                 <div className="mt-4 flex items-center">
-                <input
-                    type="checkbox"
-                    id="agreeFrequency"
-                    name="agreeFrequency"
-                    checked={agreeFrequency}
-                    onChange={handleFrequencyCheckboxChange}
-                    className="h-4 w-4 text-black border-gray-300 rounded accent-black"
-                />
-                <label
-                    htmlFor="agreeFrequency"
-                    className="ml-2 block text-sm text-black"
-                >
-                    Everyday
-                </label>
-            </div>
+                    <input
+                        type="checkbox"
+                        id="agreeFrequency"
+                        name="agreeFrequency"
+                        checked={agreeFrequency}
+                        onChange={handleFrequencyCheckboxChange}
+                        className="h-4 w-4 text-black border-gray-300 rounded accent-black"
+                    />
+                    <label
+                        htmlFor="agreeFrequency"
+                        className="ml-2 block text-sm font-medium leading-5 text-black"
+                        style={{ fontSize: "12px", fontWeight: "500" }}
+                    >
+                        Everyday
+                    </label>
+                </div>
 
             </div>
 
-            
             <div className="flex flex-grow flex-col space-y-1">
-                <label className="block text-sm font-medium text-[#151414]">
-                    Select Time
-                </label>
-
+                <label className="block text-sm font-medium text-[#151414]">Select Time</label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     {timeOptions.map((option) => (
                         <div
                             key={option.value}
-                            className={`flex flex-col items-center border p-4 rounded-md shadow-md cursor-pointer ${selectedTime === option.value
-                                    ? "bg-grey-100 border-black"
-                                    : "bg-[#FAFBFC] border-[#E2E2E2]"
+                            className={`flex flex-col items-center border p-4 rounded-md shadow-md cursor-pointer ${selectedTime === option.value ? "bg-grey-100 border-black" : "bg-[#FAFBFC] border-[#E2E2E2]"
                                 }`}
                             onClick={() => handleSelectTime(option.value)}
                         >
-                            <span className="font-semibold text-[14px]">{option.value}</span>
-                            <span className="text-sm text-[#000000]">{option.label}</span>
+                            <span className="font-medium text-[14px] leading-[19px]">{option.value}</span>
+                            <span className="text-[12px]  leading-[19px] text-[#000000]">{option.label}</span>
+
                         </div>
                     ))}
                 </div>
             </div>
 
-            
-                <Button onClick={handleNextButton} className="bg-[#4F8AFF] rounded-[55px] w-[150px] text-center text-white">
-                    Next
-
-                </Button>
-           
+            <Button onClick={onNext} className="bg-[#4F8AFF] rounded-[55px] w-[150px] text-center text-white">
+                Next
+            </Button>
         </div>
     );
 };

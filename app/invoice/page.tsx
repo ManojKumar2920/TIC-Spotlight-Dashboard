@@ -1,3 +1,5 @@
+import TopNav from '@/components/Home/TopNav'
+import InvoiceList from '@/components/Invoice/InvoiceList'
 import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
 import React from 'react'
 
@@ -6,7 +8,12 @@ const page = () => {
   return (
     <div>
         <SidebarLayout>
-            <h1>Welcome to the Invoice</h1>
+          <div className='space-y-4'>
+          <TopNav text="Invoice" />
+  
+            <InvoiceList />
+          </div>
+          
     </SidebarLayout>
       
     </div>

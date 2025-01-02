@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { LeftIcon } from '../../ReusableComponents/Icon'
+import Link from 'next/link'
 
 const CampaignTopNav = () => {
   return (
@@ -8,9 +9,12 @@ const CampaignTopNav = () => {
             <div className="text-lg font-medium">Create a New Ad</div>
 
             <div className="flex items-center space-x-5">
-                <div className="w-5 h-5">
+              <Link href={'/'}>
+              <div className="w-5 h-5">
                     <LeftIcon />
                 </div>
+              </Link>
+
             </div>
         </div>
   )

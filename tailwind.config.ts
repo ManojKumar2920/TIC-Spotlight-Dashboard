@@ -6,9 +6,17 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+	"./node_modules/tailwind-datepicker-react/dist/**/*.js",
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			objectivity: ['var(--font-objectivity)', 'sans-serif'],
+		  },
+		  fontWeight: {
+			medium: '500',  
+			bold: '700', 
+		  },
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)'

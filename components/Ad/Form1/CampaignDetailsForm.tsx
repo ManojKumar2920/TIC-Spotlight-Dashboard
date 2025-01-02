@@ -2,87 +2,113 @@
 import React, { useState } from "react";
 import { IconOne } from "../../ReusableComponents/Icon";
 import Image from "next/image";
-import { format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
+import LabelInput from "@/components/ReusableComponents/LabelInput";
 
 const CampaignDetailsForm = () => {
-    const [startDate, setStartDate] = useState<Date | undefined>(undefined);
-    const [endDate, setEndDate] = useState<Date | undefined>(undefined);
+    const [formValues, setFormValues] = useState({
+        adName: "",
+        totalBudget: "",
+        aboutAd: "",
+        startDate: "",
+        endDate: "",
+    });
+    const [date, setDate] = React.useState<Date>();
+
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+
     return (
         <div className="flex flex-grow flex-col space-y-6 p-5">
             <div className="flex items-center space-x-2">
-                <Image src={IconOne} alt="icon" />
+                <Image src={IconOne} alt="icon" width={30} height={30} />
                 <span>Campaign Details</span>
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-[#151414] mb-2 ">
-                    Ad Name
-                </label>
-                <input
+                <LabelInput
+                    labelText="Ad Name"
+                    htmlFor="adName"
+                    name="adName"
                     type="text"
-                    id="AdName"
-                    name="Ad "
-                    placeholder="Type here "
-                    className="block w-full px-4 py-2 rounded-[25px] bg-[#FAFBFC] text-sm shadow-sm focus:outline-none"
+                    value={formValues.adName}
+                    placeholder="Type here"
+                    onChange={handleInputChange}
                 />
             </div>
-            <div className="flex flex-row space-x-10">
-                {/* Start Date */}
-                <div className="flex flex-col space-y-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+            <div className="flex flex-row space-x-4">
+                <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Start Date
+                    </label>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <div>
-                                <Button
-                                    variant="outline"
-                                    className="w-[200px] flex justify-between items-center text-left font-normal bg-[#FAFBFC] rounded-[25px] border-none"
-                                >
-                                    {startDate ? format(startDate, "PPP") : <span className="placeholder-gray-500">DD/MM/YYYY</span>}
-                                    <CalendarIcon className="ml-2 h-4 w-4 text-[#292D32]" />
-                                </Button>
-                            </div>
+                            <Button
+                                variant={"outline"}
+                                className={cn(
+                                    "w-full justify-start text-left font-normal border-none",
+                                    !date &&
+                                    "text-muted-foreground bg-[#FAFBFC] h-[44px] rounded-[20px]"
+                                )}
+                            >
+                                {date ? format(date, "PPP") : (
+                                    <span className="text-[#ADB0B2]">Start date</span>
+                                )}
+                                <CalendarIcon className="ml-auto" />
+                            </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[auto] p-1" align="start">
+                        <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                                 mode="single"
-                                selected={startDate}
-                                onSelect={setStartDate}
+                                selected={date}
+                                onSelect={setDate}
+                                initialFocus
                             />
                         </PopoverContent>
                     </Popover>
                 </div>
 
-                {/* End Date */}
-                <div className="flex flex-col space-y-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        End Date
+                    </label>
                     <Popover>
                         <PopoverTrigger asChild>
-                            <div>
-                                <Button
-                                    variant="outline"
-                                    className="w-[200px] flex justify-between items-center text-left font-normal bg-[#FAFBFC] rounded-[25px] border-none"
-                                >
-                                    {endDate ? format(endDate, "PPP") : <span className="placeholder-[#ADB0B2]">DD/MM/YYYY</span>}
-                                    <CalendarIcon className="ml-2 h-4 w-4 text-[#292D32]" />
-                                </Button>
-                            </div>
+                            <Button
+                                variant={"outline"}
+                                className={cn(
+                                    "w-full justify-start text-left font-normal border-none",
+                                    !date &&
+                                    "text-muted-foreground bg-[#FAFBFC] h-[44px] rounded-[20px]"
+                                )}
+                            >
+                                {date ? format(date, "PPP") : (
+                                    <span className="text-[#ADB0B2]">End date</span>
+                                )}
+                                <CalendarIcon className="ml-auto" />
+                            </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                                 mode="single"
-                                selected={endDate}
-                                onSelect={setEndDate}
+                                selected={date}
+                                onSelect={setDate}
+                                initialFocus
                             />
                         </PopoverContent>
                     </Popover>
@@ -91,15 +117,14 @@ const CampaignDetailsForm = () => {
 
 
             <div>
-                <label className="block text-sm font-medium text-[#151414] mb-2">
-                    Total Budget
-                </label>
-                <input
+                <LabelInput
+                    labelText="Total Budget"
+                    htmlFor="totalBudget"
+                    name="totalBudget"
                     type="text"
-                    id="TotalBudget"
-                    name="TotalBudget"
+                    value={formValues.totalBudget}
                     placeholder="Enter your budget in Rs."
-                    className="block w-full px-4 py-2 rounded-[25px] bg-[#FAFBFC] text-sm shadow-sm focus:outline-none"
+                    onChange={handleInputChange}
                 />
             </div>
 
@@ -108,11 +133,13 @@ const CampaignDetailsForm = () => {
                     Tell us about your Ad
                 </label>
                 <textarea
-                    id="AboutAd"
+                    id="aboutAd"
+                    name="aboutAd"
                     rows={6}
-                    name="AboutAd"
-                    placeholder="Enter your budget in Rs."
-                    className="block w-full px-4 py-2 rounded-[25px] bg-[#FAFBFC] text-sm shadow-sm focus:outline-none"
+                    value={formValues.aboutAd}
+                    placeholder="Tell us about your Ad"
+                    onChange={handleInputChange}
+                    className="block w-full px-4 py-2 rounded-[20px] bg-[#FAFBFC] text-sm shadow-sm focus:outline-none"
                 />
             </div>
         </div>
