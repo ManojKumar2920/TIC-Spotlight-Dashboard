@@ -1,29 +1,28 @@
 import type { Metadata } from "next";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import "./globals.css";
-
+import { Providers } from "./providers";
 
 const objectivity = localFont({
   src: [
     {
-      path: '../fonts/Objectivity.woff2',
-      weight: '400',
-      style: 'normal',
+      path: "../fonts/Objectivity.woff2",
+      weight: "400",
+      style: "normal",
     },
     {
-      path: '../fonts/Objectivity_Medium.woff2',
-      weight: '500', 
-      style: 'normal',
+      path: "../fonts/Objectivity_Medium.woff2",
+      weight: "500",
+      style: "normal",
     },
     {
-      path: '../fonts/Objectivity_ExtraBold.woff2',
-      weight: '700', 
-      style: 'normal',
+      path: "../fonts/Objectivity_ExtraBold.woff2",
+      weight: "700",
+      style: "normal",
     },
   ],
-  variable: '--font-objectivity'
+  variable: "--font-objectivity",
 });
-
 
 export const metadata: Metadata = {
   title: "Spotlight Dashboard",
@@ -37,10 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${objectivity.variable} antialiased`}
-      >
-        {children}
+      <body className={`${objectivity.variable} antialiased`}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

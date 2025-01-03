@@ -18,6 +18,12 @@ html, body {
   width: 100%;
 }
 
+@layer base{
+  body {
+      @apply dark:bg-[#0f172a] bg-white
+  }
+}
+
 body {
   font-family: 'Objectivity', sans-serif;
 }
