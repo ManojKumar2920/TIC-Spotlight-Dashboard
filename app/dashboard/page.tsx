@@ -30,13 +30,13 @@ const Page: React.FC = () => {
   return (
     <div>
       <SidebarLayout>
-        <div className="flex flex-col gap-x-4 p-3 flex-grow min-h-screen">
+        <div className="flex flex-col gap-x-4 p-3 space-y-1 flex-grow min-h-screen">
           {selectedAd ? (
             <AdDetails ad={selectedAd} />
           ) : (
             <>
               <div>
-                <DashboardTopNav />
+                <DashboardTopNav title="Welcome to Dashboard"/>
               </div>
 
               <div>

@@ -1,19 +1,28 @@
-import TopNav from '@/components/Home/TopNav'
-import InvoiceList from '@/components/Invoice/InvoiceList'
-import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
-import { Sidebar } from 'lucide-react'
-import React from 'react'
+import AdminNav from '@/components/Admin/AdminNav';
+import CustomerRequest from '@/components/Admin/CustomerRequest';
+import DashboardTopNav from '@/components/Dashboard/DashboardTopNav';
+import { CarIcon, MonitorIcon, Profile2Icon } from '@/components/ReusableComponents/Icon';
+import SidebarLayout from '@/components/ReusableComponents/SidebarLayout';
+import React from 'react';
 
-const page = () => {
+const Page = () => {
+
+
   return (
     <div>
       <SidebarLayout>
-        <div className='space-y-4'>
-          <TopNav text='Welcome Admin' />
+        <div className='flex flex-col gap-x-4 p-3 space-y-7 '>
+          <DashboardTopNav title='Welcome Admin' />
         </div>
-        </SidebarLayout>
+        <div>
+          <AdminNav />
+        </div>
+        <div className='flex flex-col gap-x-4 p-3 space-y-7 '>
+          <CustomerRequest />
+        </div>
+      </SidebarLayout>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

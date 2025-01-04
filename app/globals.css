@@ -43,6 +43,30 @@ select {
   background-blend-mode: overlay; }
   
  */
+
+ .custom-gradient { background: linear-gradient(201.18deg, #C9DEFF 3.14%, #C9DEFF 86.04%); }
+
+ th {
+  font-weight: normal;
+  font-size: 13px;
+  color: #2C2D33;
+}
+
+
+td {
+  color: #6E7079;
+  font-size: 13px;
+
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  gap: 0px;
+  border-radius: 8px;
+  border: 1px solid #000;
+}
+
  @layer base {
   :root {
     --background: 0 0% 100%;
@@ -69,8 +93,8 @@ select {
     --chart-3: 216 92% 60%;
     --chart-4: 210 98% 78%;
     --chart-5: 212 97% 87%;
-    --color-run: #4B62FF; /* Run hours color */
-    --color-remaining: #E5E5E5; /* Remaining hours color */
+    --color-run: #4B62FF;
+    --color-remaining: #E5E5E5; 
   }
 
   .dark {
@@ -98,7 +122,7 @@ select {
     --chart-3: 216 92% 60%;
     --chart-4: 210 98% 78%;
     --chart-5: 212 97% 87%;
-    --color-run: #4B62FF; /* Run hours color */
-    --color-remaining: #4E4E4E; /* Remaining hours color */
+    --color-run: #4B62FF; 
+    --color-remaining: #4E4E4E;
   }
 }

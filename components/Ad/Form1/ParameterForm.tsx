@@ -7,7 +7,6 @@ import Select from "../../ReusableComponents/Select";
 import { LocationData } from "@/Data/LocationData";
 import { FrequencyData } from "@/Data/FrequencyData";
 import Button from "@/components/ReusableComponents/Button";
-import { useRouter } from "next/navigation";
 
 
 const ParameterForm = ({ onNext }: { onNext: () => void }) => {
@@ -23,7 +22,7 @@ const ParameterForm = ({ onNext }: { onNext: () => void }) => {
     const [Frequency, setFrequency] = useState<{ label: string; value: string } | undefined>(undefined);
     const [agreeLocation, setAgreeLocation] = useState(false);
     const [agreeFrequency, setAgreeFrequency] = useState(false);
-    const router = useRouter();
+
 
     const handleLocationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOption = LocationData.find((option) => option.value === event.target.value);

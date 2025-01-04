@@ -1,12 +1,19 @@
+"use client";
+
 import CreateAd from '@/components/Home/CreateAd'
 import LiveMap from '@/components/Home/LiveMap'
 import TopNav from '@/components/Home/TopNav'
 import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
 import React from 'react'
+import Map from "../components/Map/Map";
 
+// const Map = dynamic(() => import('../components/Map/Map'),
+//  { loading: () =>
+//      <p>Loading...</p>, 
+//      ssr: false,
+//      });
+     
 const page = () => {
-
-
     return (
         <div>
             <SidebarLayout>
@@ -16,7 +23,7 @@ const page = () => {
                         <CreateAd />
                     </div>
                     <div className="flex-1 flex items-stretch justify-center rounded bg-white ">
-                        <LiveMap />
+                    <Map key={Math.random()} />
                     </div>
                 </div>
             </SidebarLayout>

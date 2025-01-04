@@ -1,20 +1,39 @@
-// import React from 'react';
-// import KeplerGl from 'kepler.gl';
-// import { useSelector } from 'react-redux';
-// import { RootState } from '../../store';
+"use client";
 
-// const Map: React.FC = () => {
-//   const store = useSelector((state: RootState) => state);
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { useEffect, useRef } from "react";
+import { Map as LeafletMap } from "leaflet";
 
-//   return (
-//     <KeplerGl
-//       id="map"
-//       width={window.innerWidth}
-//       mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
-//       height={window.innerHeight}
-//       store={store}
-//     />
-//   );
-// };
+const Map = () => {
+  const mapRef = useRef<LeafletMap | null>(null);
 
-// export default Map;
+  useEffect(() => {
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.off();
+        mapRef.current.remove(); 
+      }
+    };
+  }, []);
+
+  return (
+    <MapContainer
+      center={[19.076, 72.877]}
+      zoom={13}
+      style={{ height: "100vh", width: "100%" }}
+    >
+      <TileLayer 
+      attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>' 
+      url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" 
+      />
+      <Marker position={[19.076, 72.877]}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+    </MapContainer>
+  );
+};
+
+export default Map;

@@ -55,6 +55,13 @@ import GreenGraph from "@/public/Dashboard/greenGraph.svg";
 import Clock from "@/public/Dashboard/clock.svg";
 import Location from "@/public/Dashboard/location.svg";
 
+import  MonitorIcon  from "@/public/Dashboard/monitor.svg";
+import Profile2Icon from "@/public/Dashboard/profile-2user.svg";
+import BlueCarIcon from "@/public/Dashboard/bluecar.svg";
+import { CiFilter as FilterIcon } from "react-icons/ci";
+import SendIcon from "@/public/Dashboard/Send.svg";
+import { FiSearch as SearchIcon} from "react-icons/fi";
+import CheckBoxIcon from "@/public/Dashboard/checkbox.svg"
 export {
     CompanyLogo,
     HomeIcon,
@@ -89,5 +96,13 @@ export {
     GreenGraph,
     Clock,
     Location,
+    MonitorIcon,
+    Profile2Icon,
+    BlueCarIcon,
+    FilterIcon,
+    SendIcon,
+    SearchIcon,
+    CheckBoxIcon
+
 
 };
