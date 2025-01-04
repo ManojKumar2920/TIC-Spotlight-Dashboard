@@ -9,7 +9,6 @@ import {
     HomeIcon,
     InvoiceIcon,
     ProfileIcon,
-    SettingsIcon,
     LogoutIcon,
     DashboardIcon
 } from "@/components/ReusableComponents/Icon";

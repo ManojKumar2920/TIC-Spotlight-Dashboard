@@ -29,9 +29,9 @@ const UserDetails = () => {
             <h2 className="text-3xl font-semibold mb-6">Profile Management</h2>
 
             <div className='flex flex-wrap gap-8 justify-between w-full'>
-                <div className="flex flex-col items-start w-[273px] h-[228px] rounded-lg  bg-white  p-5">
-                    <span className="text-lg font-medium text-gray-700 mb-3">Company Logo</span>
-                    <div className="relative w-[130px] h-[130px] mb-3">
+                <div className="flex flex-col items-start w-[273px] h-[228px] rounded-lg  bg-white dark:bg-[#1e1e1e]   p-5">
+                    <span className="text-lg font-medium text-gray-700 mb-3 dark:text-white">Company Logo</span>
+                    <div className="relative w-[130px] h-[130px] mb-3 ">
                         <div className="border bg-[#D9D9D9] flex justify-center items-center w-[130px] h-[130px] ">
                             <Image src={companyProfileIcon} alt="Company Logo" className="object-cover" />
                         </div>
@@ -39,14 +39,14 @@ const UserDetails = () => {
                         <Image
                             src={profileAddIcon}
                             alt="Add Icon"
-                            className="absolute bottom-0 right-0 w-8 h-8 cursor-pointer"
+                            className="absolute bottom-[-1] right-[-1] w-8 h-8 cursor-pointer"
                         />
                     </div>
-                    <span className="text-sm text-gray-500">Add your company logo</span>
+                    <span className="text-sm text-gray-500 dark:text-white">Add your company logo</span>
                 </div>
 
 
-                <div className="flex flex-wrap gap-6 w-full sm:w-[calc(100%-320px)] justify-between rounded-lg  bg-white  p-5">
+                <div className="flex flex-wrap gap-6 w-full sm:w-[calc(100%-320px)] justify-between rounded-lg  bg-white dark:bg-[#1e1e1e]  p-5">
                     <LabelInput
                         labelText="Name"
                         htmlFor="name"
@@ -100,8 +100,7 @@ const UserDetails = () => {
                 </div>
             </div>
 
-            {/* Address Section */}
-            <div className='flex flex-col space-y-5 w-full bg-white rounded-lg  p-5'>
+            <div className='flex flex-col space-y-5 w-full bg-white dark:bg-[#1e1e1e] rounded-lg  p-5'>
                 <LabelInput
                     labelText="Company Address"
                     htmlFor="companyAddress"
@@ -124,7 +123,7 @@ const UserDetails = () => {
                 />
 
                 <div className='mt-6'>
-                    <Button className="bg-blue-600 rounded-full w-[180px] py-2 text-center text-white text-lg">
+                    <Button className="bg-[#4C8AE8] rounded-full w-[180px] py-2 text-base text-center text-white ">
                         Update Profile
                     </Button>
                 </div>

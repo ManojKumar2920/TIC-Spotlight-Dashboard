@@ -11,6 +11,7 @@ import {
   InstaIcon,
   SubmitIcon,
 } from "../ReusableComponents/Icon";
+import { GoArrowRight } from "react-icons/go";
 import { hr } from "date-fns/locale";
 
 type WelcomeStepProps = {
@@ -38,11 +39,11 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onNext }) => {
   ];
 
   return (
-    <div className="flex flex-grow flex-col space-y-8 p-5">
+    <div className="flex flex-grow flex-col space-y-8 p-5 dark:bg-[#1e1e1e] ">
       <ToastContainer />
       <div className="text-center space-y-2 mt-7">
       <h2 className="text-2xl font-bold leading-[24.72px]">Welcome to Spotlight</h2>
-        <p className="text-[rgba(0,0,0,0.66)] text-sm leading-[22px]">
+        <p className="text-[rgba(0,0,0,0.66)] dark:text-white text-sm leading-[22px]">
           Sign into your account. If you don't have one, <br />
           you'll be prompted to create one.
         </p>
@@ -55,14 +56,18 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onNext }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter Your email"
-          className="font-medium block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white text-sm shadow-sm focus:outline-none border border-[#9B9797]"
+          className="font-medium block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white dark:bg-[#333333] text-sm shadow-sm focus:outline-none border border-[#9B9797]"
         />
        <Button onClick={handleSubmit} 
-       className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center hover:bg-black" > 
+       className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center dark:bg-[#111111] hover:bg-black" > 
        <span className="flex-grow text-center">Submit</span>
-        <Image src={SubmitIcon} alt={""} className="absolute right-2 w-[35px] h-[35px]" /> 
+       <div className="absolute right-2 p-2 rounded-full w-[35px] h-[35px] bg-black  dark:bg-white text-white dark:text-black flex items-center justify-center">
+  <GoArrowRight className="w-6 h-6" />
+</div>
         </Button>
       </div>
+     
+
 
       <div className="flex items-center my-4">
         <div className="flex-grow border-t border-[#8D8B8B]"></div>
@@ -78,7 +83,7 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onNext }) => {
           href={icon.href} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="w-[54px] h-[54px] flex items-center justify-center border-[0.6px] border-[rgba(217, 212, 212, 0.2)] rounded-[3px]" > 
+          className="w-[54px] h-[54px] flex items-center justify-center dark:bg-[#333333] rounded-[3px]" > 
           <Image src={icon.image} alt={icon.name} className="w-6 h-6" /> 
           </a>
         ))}

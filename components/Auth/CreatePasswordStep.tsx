@@ -7,6 +7,7 @@ import Button from "../ReusableComponents/Button";
 import { SubmitIcon } from "../ReusableComponents/Icon";
 import Image from "next/image";
 import { useRouter } from 'next/navigation'
+import LabelInput from "../ReusableComponents/LabelInput";
 
 type CreatePasswordStepProps = {
   email: string;
@@ -28,29 +29,28 @@ const CreatePasswordStep: React.FC<CreatePasswordStepProps> = ({ email }) => {
   };
 
   return (
-    <div className="flex flex-grow flex-col space-y-6 p-5 mt-5">
+    <div className="flex flex-grow flex-col space-y-6 p-5 mt-5 ">
       <ToastContainer />
-      <div>
+      <div className="dark:bg-[#1e1e1e] ">
         <h2 className="text-2xl font-semibold text-center">Create a Password</h2>
-        <p className="text-center text-gray-600">
+        <p className="text-center text-gray-600 dark:text-white">
           Set a strong password for your verified account to enhance security.
         </p>
       </div>
 
-      <input
+      <LabelInput
         type="email"
         value={email}
-        onChange={(e) => setPassword(e.target.value)}
-        disabled
-        className="block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white text-sm shadow-sm focus:outline-none border border-[#9B9797]"
+        onChange={(e) => setPassword(e.target.value)} labelText={""} htmlFor={""}     
+        disabled   
+  
       />
       <div className="flex flex-col space-y-3">
-        <input
+        <LabelInput
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Create a password"
-          className="block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white text-sm shadow-sm focus:outline-none border border-[#9B9797]"
+          placeholder="Create a password" labelText={""} htmlFor={""}
         />
         <span className="text-sm text-gray-500">
           Use 8+ characters with a mix of letters, numbers, and symbols for a strong password

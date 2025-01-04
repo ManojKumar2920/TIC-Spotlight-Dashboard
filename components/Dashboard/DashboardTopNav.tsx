@@ -20,7 +20,7 @@ const DashboardTopNav = ({title}:{title: string}) => {
   const today = format(new Date(), "MMM d");
 
   return (
-    <div className="flex items-center justify-between h-[48px] bg-transparent text-black px-4">
+    <div className="flex items-center justify-between h-[48px] bg-transparent text-black dark:text-white px-4">
       <div className="text-2xl font-bold leading-[48px]">
       {title}
       </div>
@@ -33,13 +33,13 @@ const DashboardTopNav = ({title}:{title: string}) => {
               className={cn(
                 "w-full justify-start text-left font-normal border-none",
                 !date &&
-                  "text-muted-foreground bg-[#FFFFFF] h-[44px] rounded-[20px]"
+                  "text-muted-foreground bg-[#FFFFFF] dark:bg-[#1e1e1e] h-[44px] rounded-[20px]"
               )}
             >
               {date ? (
                 format(date, "MMM d")
               ) : (
-                <span className="text-[#000000]">{today}</span>
+                <span className="text-[#000000] dark:text-white ">{today}</span>
               )}
               <CalendarIcon className="ml-auto" />
             </Button>
@@ -55,11 +55,11 @@ const DashboardTopNav = ({title}:{title: string}) => {
         </Popover>
 
         <div className="flex items-center space-x-5">
-          <div className="w-5 h-5">
-            <Image src={NotificationIcon} alt="Notification" />
+          <div >
+            <NotificationIcon className="w-5 h-5"/>
           </div>
-          <div className="w-6 h-6">
-            <Image src={ProfileIcon2} alt="Profile" />
+          <div >
+            <ProfileIcon2 className="w-6 h-6"/>
           </div>
         </div>
       </div>

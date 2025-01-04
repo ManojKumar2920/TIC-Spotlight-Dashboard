@@ -34,7 +34,8 @@ import GoogleIcon from "@/public/Auth/Google.svg";
 import FaceBookIcon from "@/public/Auth/Facebook.svg";
 import InstaIcon from "@/public/Auth/Insta.svg";
 import AppleIcon from "@/public/Auth/Apple.svg"
-import DownArrowIcon from "@/public/Ad/arrow-down.svg"
+// import DownArrowIcon from "@/public/Ad/arrow-down.svg"
+import { RiArrowDownWideFill as DownArrowIcon} from "react-icons/ri";
 
 
 //profile icons
@@ -58,10 +59,12 @@ import Location from "@/public/Dashboard/location.svg";
 import  MonitorIcon  from "@/public/Dashboard/monitor.svg";
 import BlueCarIcon from "@/public/Dashboard/bluecar.svg";
 import { CiFilter as FilterIcon } from "react-icons/ci";
-import SendIcon from "@/public/Dashboard/Send.svg";
+// import SendIcon from "@/public/Dashboard/Send.svg";
 import { FiSearch as SearchIcon} from "react-icons/fi";
 import CheckBoxIcon from "@/public/Dashboard/checkbox.svg"
+import { TbSend as SendIcon } from "react-icons/tb";
 
+import DashboardProfile from "@/public/Dashboard/profile-2user.svg";
 
 
 export {
@@ -103,7 +106,9 @@ export {
     SendIcon,
     SearchIcon,
     CheckBoxIcon,
-    NotificationIcon
+    NotificationIcon,
+    DashboardProfile
+
 
 
 

@@ -19,7 +19,7 @@ const page = () => {
             <SidebarLayout>
                 <TopNav text="Welcome" />
                 <div className="flex gap-x-4 pl-3 pr-3 mt-3 flex-grow h-screen">
-                    <div className="flex-1 flex items-stretch justify-center rounded-[12px] bg-white dark:bg-[171515] ">
+                    <div className="flex-1 flex items-stretch justify-center rounded-[12px] bg-white dark:bg-[1e1e1e] ">
                         <CreateAd />
                     </div>
                     <div className="flex-1 flex items-stretch justify-center rounded bg-white  ">

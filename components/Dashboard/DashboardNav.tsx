@@ -29,11 +29,11 @@ const DashboardNav = () => {
       {navItems.map((item, index) => (
         <div
           key={index}
-          className="w-full h-[107px] flex justify-between items-center gap-0 rounded-[14px] bg-white p-4 shadow-md"
+          className="w-full h-[107px] flex justify-between items-center gap-0 rounded-[14px] bg-white dark:bg-[#1e1e1e] p-4 shadow-md"
         >
           <div className="flex flex-col">
-            <div className="text-sm text-gray-600 mb-1">{item.label}</div>
-            <div className="text-xl font-bold text-gray-800">{item.value}</div>
+            <div className="text-sm text-gray-600 mb-1 dark:text-white">{item.label}</div>
+            <div className="text-xl font-bold text-gray-800 dark:text-white">{item.value}</div>
           </div>
           <div className={`w-[60px] h-[60px] flex justify-center items-center ${item.bgColor} bg-opacity-10 rounded-[23px] shadow-md`}>
             <div className="relative w-8 h-8">

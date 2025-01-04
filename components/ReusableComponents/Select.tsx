@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { DownArrowIcon } from './Icon';
-
+// import { DownArrowIcon } from './Icon';
 interface SelectProps {
   label: string;
   name: string;
@@ -27,7 +27,7 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <div className={`mb-4 ${className}`}>
-      <label htmlFor={name} className="block text-sm font-medium text-[#151414] mb-2">
+      <label htmlFor={name} className="block text-sm font-medium text-[#151414] dark:text-white mb-2">
         {label}
         {required && <span className="text-red-500">*</span>}
       </label>
@@ -38,7 +38,7 @@ const Select: React.FC<SelectProps> = ({
           value={value || ''}
           onChange={onChange}
           required={required}
-          className={`w-full h-[44px] rounded-[25px] px-6 py-2 bg-[#FAFBFC] font-[Objectivity] text-sm leading-[19px] focus:outline-none appearance-none pr-10 ${isPlaceholderSelected ? 'placeholder-selected' : ''}`}
+          className={`w-full h-[44px] rounded-[25px] px-6 py-2 bg-[#FAFBFC] dark:bg-[#333333] font-[Objectivity] text-sm leading-[19px] focus:outline-none appearance-none pr-10 ${isPlaceholderSelected ? 'placeholder-selected' : ''}`}
         >
           <option value="" disabled>
             {placeholder || 'Select an option'}
@@ -50,9 +50,7 @@ const Select: React.FC<SelectProps> = ({
           ))}
         </select>
         <div className="absolute right-4 pointer-events-none">
-          <Image
-            src={DownArrowIcon}
-            alt="Dropdown Arrow"
+          <DownArrowIcon
           />
         </div>
       </div>

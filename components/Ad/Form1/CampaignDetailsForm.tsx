@@ -34,7 +34,7 @@ const CampaignDetailsForm = () => {
     };
 
     return (
-        <div className="flex flex-grow flex-col space-y-6 p-5">
+        <div className="flex flex-grow flex-col space-y-6 p-5 dark:bg-[#1e1e1e] ">
             <div className="flex items-center space-x-2">
                 <Image src={IconOne} alt="icon" width={30} height={30} />
                 <span>Campaign Details</span>
@@ -53,7 +53,7 @@ const CampaignDetailsForm = () => {
             </div>
             <div className="flex flex-row space-x-4">
                 <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                         Start Date
                     </label>
                     <Popover>
@@ -63,7 +63,7 @@ const CampaignDetailsForm = () => {
                                 className={cn(
                                     "w-full justify-start text-left font-normal border-none",
                                     !date &&
-                                    "text-muted-foreground bg-[#FAFBFC] h-[44px] rounded-[20px]"
+                                    "text-muted-foreground bg-[#FAFBFC] dark:bg-[#333333] h-[44px] rounded-[20px]"
                                 )}
                             >
                                 {date ? format(date, "PPP") : (
@@ -84,7 +84,7 @@ const CampaignDetailsForm = () => {
                 </div>
 
                 <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-white mb-2">
                         End Date
                     </label>
                     <Popover>
@@ -94,7 +94,7 @@ const CampaignDetailsForm = () => {
                                 className={cn(
                                     "w-full justify-start text-left font-normal border-none",
                                     !date &&
-                                    "text-muted-foreground bg-[#FAFBFC] h-[44px] rounded-[20px]"
+                                    "text-muted-foreground bg-[#FAFBFC] dark:bg-[#333333] h-[44px] rounded-[20px]"
                                 )}
                             >
                                 {date ? format(date, "PPP") : (
@@ -129,7 +129,7 @@ const CampaignDetailsForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-[#151414] mb-2">
+                <label className="block text-sm font-medium text-[#151414] dark:text-white mb-2">
                     Tell us about your Ad
                 </label>
                 <textarea
@@ -139,7 +139,7 @@ const CampaignDetailsForm = () => {
                     value={formValues.aboutAd}
                     placeholder="Tell us about your Ad"
                     onChange={handleInputChange}
-                    className="block w-full px-4 py-2 rounded-[20px] bg-[#FAFBFC] text-sm shadow-sm focus:outline-none"
+                    className="block w-full px-4 py-2 rounded-[20px] bg-[#FAFBFC] text-sm shadow-sm focus:outline-none dark:bg-[#333333]"
                 />
             </div>
         </div>

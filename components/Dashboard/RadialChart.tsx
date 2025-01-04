@@ -2,7 +2,6 @@
 
 import { TrendingUp } from "lucide-react"
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts"
-
 import {
   Card,
   CardContent,
@@ -34,9 +33,11 @@ export function RadialChartComponent() {
   const totalVisitors = chartData[0].desktop + chartData[0].mobile
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col text-black dark:text-white dark:bg-[#1e1e1e]">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="flex mr-auto">Total Ads Plays</CardTitle>
+        <CardTitle className="flex mr-auto text-base font-medium dark:text-white">
+          Total Ads Plays
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-1 items-center pb-0">
         <ChartContainer
@@ -62,16 +63,16 @@ export function RadialChartComponent() {
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) - 16}
-                          className="fill-foreground text-2xl font-bold"
+                          className="fill-foreground text-2xl font-bold dark:fill-white"
                         >
                           {totalVisitors.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 4}
-                          className="fill-muted-foreground"
+                          className="fill-muted-foreground dark:fill-white"
                         >
-                          Visitors
+                          Ads
                         </tspan>
                       </text>
                     )

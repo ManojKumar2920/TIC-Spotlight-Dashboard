@@ -44,14 +44,14 @@ export function PieChartComponent() {
   }, [])
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col dark:bg-[#1e1e1e]">
       <CardHeader className="items-center pb-0">
         <CardTitle className="text-base font-medium">Total Ad Time (in hr)</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-[2/1] h-[305px] w-full" 
+          className="mx-auto aspect-[2/1] h-[305px] w-full dark:bg-[#1e1e1e]" 
         >
           <PieChart>
             <ChartTooltip
@@ -78,14 +78,14 @@ export function PieChartComponent() {
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="fill-foreground text-3xl font-bold"
+                          className="fill-foreground text-3xl font-bold dark:fill-white"
                         >
                           {totalVisitors.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground text-center"
+                          className="fill-muted-foreground text-center dark:fill-white"
                         >
                           
                         </tspan>

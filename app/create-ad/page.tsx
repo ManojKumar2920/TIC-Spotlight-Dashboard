@@ -30,13 +30,13 @@ const Page: React.FC = () => {
             <div className="flex gap-x-4 p-3 mt-3 flex-grow h-screen">
               
               <div className="flex-1 flex items-stretch justify-center rounded-[12px] bg-white overflow-hidden shadow-md">
-                <div className="w-full p-4">
+                <div className="w-full p-4 dark:bg-[#1e1e1e]">
                   <CampaignDetailsForm />
                 </div>
               </div>
               
               <div className="flex-1 flex items-stretch justify-center rounded-[12px] bg-white overflow-hidden shadow-md">
-                <div className="w-full p-4">
+                <div className="w-full p-4 dark:bg-[#1e1e1e]">
                   <ParameterForm onNext={() => goToNextStep('orderSummary')} />
                 </div>
               </div>
@@ -49,13 +49,13 @@ const Page: React.FC = () => {
             <OrderSummaryTopNav onAddCreative={() => goToPreviousStep('campaignDetails')} />
             <div className="flex gap-x-4 p-3 mt-3 flex-grow h-screen">
               
-              <div className="flex-1 flex items-stretch justify-center rounded-[12px] bg-white shadow-md">
+              <div className="flex-1 flex items-stretch justify-center rounded-[12px] dark:bg-[#1e1e1e] bg-white shadow-md">
                 <div className="w-full p-4">
                 <RenderModelForm onBack={() => goToPreviousStep('campaignDetails')} />
                 </div>
               </div>
               
-              <div className="flex-1 flex items-stretch justify-center rounded bg-white shadow-md">
+              <div className="flex-1 flex items-stretch justify-center rounded dark:bg-[#1e1e1e] bg-white shadow-md">
                 <div className="w-full p-4">
                   <OrderSummary />
                 </div>

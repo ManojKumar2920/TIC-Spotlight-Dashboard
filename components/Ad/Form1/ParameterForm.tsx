@@ -47,7 +47,7 @@ const ParameterForm = ({ onNext }: { onNext: () => void }) => {
     };
 
     return (
-        <div className="flex flex-grow flex-col space-y-7 p-5">
+        <div className="flex flex-grow flex-col space-y-7 p-5 dark:bg-[#1e1e1e] ">
             <div className="flex items-center space-x-2">
                 <Image src={IconTwo} alt="icon" width={32} height={32} />
                 <span>Parameters & Media</span>
@@ -73,7 +73,7 @@ const ParameterForm = ({ onNext }: { onNext: () => void }) => {
                     />
                     <label
                         htmlFor="agreeLocation"
-                        className="ml-2 text-sm text-black"
+                        className="ml-2 text-sm text-black dark:text-white"
                         style={{ fontSize: "12px", fontWeight: "500" }}
                     >
                         Enter City ( Mumbai )
@@ -100,7 +100,7 @@ const ParameterForm = ({ onNext }: { onNext: () => void }) => {
                     />
                     <label
                         htmlFor="agreeFrequency"
-                        className="ml-2 block text-sm font-medium leading-5 text-black"
+                        className="ml-2 block text-sm font-medium leading-5 text-black dark:text-white"
                         style={{ fontSize: "12px", fontWeight: "500" }}
                     >
                         Everyday
@@ -110,17 +110,17 @@ const ParameterForm = ({ onNext }: { onNext: () => void }) => {
             </div>
 
             <div className="flex flex-grow flex-col space-y-1">
-                <label className="block text-sm font-medium text-[#151414]">Select Time</label>
+                <label className="block text-sm font-medium text-[#151414] dark:text-white ">Select Time</label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                     {timeOptions.map((option) => (
                         <div
                             key={option.value}
-                            className={`flex flex-col items-center border p-4 rounded-md shadow-md cursor-pointer ${selectedTime === option.value ? "bg-grey-100 border-black" : "bg-[#FAFBFC] border-[#E2E2E2]"
+                            className={`flex flex-col items-center border p-4 rounded-md shadow-md cursor-pointer ${selectedTime === option.value ? "bg-grey-100 border-black" : "bg-[#FAFBFC] border-[#E2E2E2] dark:bg-[#333333] dark:border-[#1e1e1e]"} ${selectedTime === option.value ? "border-black" : ""
                                 }`}
                             onClick={() => handleSelectTime(option.value)}
                         >
-                            <span className="font-medium text-[14px] leading-[19px]">{option.value}</span>
-                            <span className="text-[12px]  leading-[19px] text-[#000000]">{option.label}</span>
+                            <span className="font-medium text-[12px] leading-[19px]">{option.value}</span>
+                            <span className="text-[12px]  leading-[19px] text-[#000000] dark:text-white">{option.label}</span>
 
                         </div>
                     ))}

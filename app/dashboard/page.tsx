@@ -59,17 +59,17 @@ const Page: React.FC = () => {
                   <RadialChartComponent />
                 </div>
 
-                <div className="flex-initial w-2/3 border rounded-[14px] bg-white p-4 shadow-md">
+                <div className="flex-initial w-2/3 border rounded-[14px] dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md">
                   <AdList onAdClick={handleAdClick} />
                 </div>
               </div>
 
-              <div className="flex flex-row border rounded-[14px] bg-white p-4 shadow-md h-[491px]">
+              <div className="flex flex-row border rounded-[14px] bg-white dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
                 Latitude and Longitude
                 
               </div>
 
-              <div className="flex flex-row border rounded-[14px] bg-white p-4 shadow-md h-[491px]">
+              <div className="flex flex-row border rounded-[14px] bg-white  dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
                 Total Ad plays
               </div>
             </>

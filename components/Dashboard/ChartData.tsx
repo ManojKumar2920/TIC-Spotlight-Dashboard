@@ -40,12 +40,12 @@ const chartConfig = {
 
 export function BarChartComponent() {
   return (
-    <Card>
+    <Card className="dark:bg-[#1e1e1e]">
       <CardHeader>
         <CardTitle className="font-medium text-base">Sum of total count by Month & day</CardTitle>
       </CardHeader>
       <CardContent className="flex-">
-      <ChartContainer config={chartConfig} className="h-64 w-full">  
+      <ChartContainer config={chartConfig} className="h-64 w-full dark:bg-[#1e1e1e]">  
           <BarChart
             data={chartData}
             className="flex w-full"  

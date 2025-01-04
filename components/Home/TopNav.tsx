@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import { NotificationIcon, ProfileIcon2 } from '../ReusableComponents/Icon'
 
 interface TopNavProps {
@@ -13,7 +12,7 @@ const TopNav: React.FC<TopNavProps> = ({ text }) => {
 
             <div className="flex items-center space-x-5">
                 <div>
-                    <NotificationIcon className='w-6 h-6'/>
+                    <NotificationIcon className='w-5 h-5'/>
                 </div>
                 <div>
                     <ProfileIcon2 className='w-6 h-6' />
