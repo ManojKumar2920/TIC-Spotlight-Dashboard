@@ -15,10 +15,8 @@ import { RxDashboard as DashboardIcon } from "react-icons/rx";
 
 //HomePage Icons    
 
-import CarIcon from "@/public/Home/CarIcon.svg";
+import { MdOutlineLocalTaxi as CarIcon } from "react-icons/md";
 import { IoIosAdd as AddIcon } from "react-icons/io";
-import NotificationIcon from "@/public/Home/notification.svg";
-import ProfileIcon2 from "@/public/Home/profile.svg";
 
 //AD Icons
 import IconOne from "@/public/Ad/IconOne.svg";
@@ -43,6 +41,8 @@ import DownArrowIcon from "@/public/Ad/arrow-down.svg"
 import companyProfileIcon from "@/public/Profile/CompanyProfile.svg";
 import profileAddIcon from "@/public/Profile/profileAddIcon.svg";
 
+import { BiBell as NotificationIcon } from "react-icons/bi";
+import { HiOutlineUserCircle as ProfileIcon2 } from "react-icons/hi2";
 //Invoice Icons
 import DownloadIcon from "@/public/Invoice/downloadicon.svg";
 
@@ -56,12 +56,14 @@ import Clock from "@/public/Dashboard/clock.svg";
 import Location from "@/public/Dashboard/location.svg";
 
 import  MonitorIcon  from "@/public/Dashboard/monitor.svg";
-import Profile2Icon from "@/public/Dashboard/profile-2user.svg";
 import BlueCarIcon from "@/public/Dashboard/bluecar.svg";
 import { CiFilter as FilterIcon } from "react-icons/ci";
 import SendIcon from "@/public/Dashboard/Send.svg";
 import { FiSearch as SearchIcon} from "react-icons/fi";
 import CheckBoxIcon from "@/public/Dashboard/checkbox.svg"
+
+
+
 export {
     CompanyLogo,
     HomeIcon,
@@ -71,7 +73,6 @@ export {
     LogoutIcon,
     DarkModeIcon,
     DashboardIcon,
-    NotificationIcon,
     ProfileIcon2,
     CarIcon,
     AddIcon,
@@ -97,12 +98,13 @@ export {
     Clock,
     Location,
     MonitorIcon,
-    Profile2Icon,
     BlueCarIcon,
     FilterIcon,
     SendIcon,
     SearchIcon,
-    CheckBoxIcon
+    CheckBoxIcon,
+    NotificationIcon
+
 
 
 };

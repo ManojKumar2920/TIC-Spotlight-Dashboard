@@ -1,8 +1,7 @@
 import React from "react";
-import { DownloadIcon } from "../ReusableComponents/Icon";
 import Image from "next/image";
 import Button from "../ReusableComponents/Button";
-
+import { Download } from 'lucide-react';
 type InvoiceCardProps = {
   title: string;
   dateRange: string;
@@ -36,18 +35,18 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({
   ];
 
   return (
-    <div className="relative border border-bg-[#F2E9E9] h-[402px] p-6 rounded-lg bg-white shadow-md w-[271px] max-w-md">
+    <div className="relative border border-bg-[#F2E9E9] h-[402px] p-6 rounded-lg bg-white dark:bg-[#1e1e1e] shadow-md w-[271px] max-w-md">
       <div className="flex items-center justify-between mb-2">
         <h2 className="font-bold text-base">{title}</h2>
-        <Image src={DownloadIcon} alt="Download Icon" />
+        <Download  className="text-black dark:text-white"/>
       </div>
 
       <hr className="border-gray-300" />
       <div className="mt-4 space-y-3">
-        <p className="text-xs text-[#000000] leading-19px font-medium">
+        <p className="text-xs text-[#000000] dark:text-white leading-19px font-medium">
           Date: {dateRange}
         </p>
-        <p className="text-xs text-[#000000] leading-19px font-medium">
+        <p className="text-xs text-[#000000] dark:text-white leading-19px font-medium">
           Total Budget: {totalBudget}₹
         </p>
       </div>

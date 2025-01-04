@@ -11,6 +11,7 @@ import { RadialChartComponent } from "@/components/Dashboard/RadialChart";
 import SidebarLayout from "@/components/ReusableComponents/SidebarLayout";
 import React, { useState } from "react";
 
+
 type Ad = {
   name: string;
   adruns: number;
@@ -65,6 +66,7 @@ const Page: React.FC = () => {
 
               <div className="flex flex-row border rounded-[14px] bg-white p-4 shadow-md h-[491px]">
                 Latitude and Longitude
+                
               </div>
 
               <div className="flex flex-row border rounded-[14px] bg-white p-4 shadow-md h-[491px]">

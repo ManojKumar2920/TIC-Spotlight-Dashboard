@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div>
         <SidebarLayout>
-          <div className='space-y-4'>
+          <div className='space-y-4 '>
           <TopNav text="Invoice" />
   
             <InvoiceList />

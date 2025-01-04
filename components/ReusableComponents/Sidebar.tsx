@@ -11,10 +11,10 @@ import {
     ProfileIcon,
     SettingsIcon,
     LogoutIcon,
-    DarkModeIcon,
     DashboardIcon
 } from "@/components/ReusableComponents/Icon";
 import { usePathname } from "next/navigation";
+import ThemeSwitch from "@/components/ReusableComponents/ThemeSwitch";
 
 export const Sidebar: React.FC = () => {
     const pathname = usePathname(); 
@@ -24,7 +24,6 @@ export const Sidebar: React.FC = () => {
         { href: "/dashboard", icon: <DashboardIcon  className="w-[17px] h-[17px]" />, text: "Dashboard", key: "dashboard" },
         { href: "/invoice", icon: < InvoiceIcon  className="w-[17px] h-[17px]"  />, text: "Invoice", key: "invoice" },
         { href: "/profile", icon: < ProfileIcon className="w-[17px] h-[17px]"  />, text: "Profile", key: "profile" },
-        { href: "/darkmode", icon: <DarkModeIcon className="w-[17px] h-[17px]" />, text: "Darkmode", key: "darkmode" },
         { href: "/logout", icon: <LogoutIcon className="w-[19px] h-[19px]"  />, text: "Logout", key: "logout" },
     ];
 
@@ -50,6 +49,10 @@ export const Sidebar: React.FC = () => {
                         </li>
                     </Link>
                 ))}
+                <div className=" pl-10 mt-2">
+
+                <ThemeSwitch />
+                </div>
             </ul>
         </nav>
     </div>

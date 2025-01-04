@@ -13,7 +13,7 @@ const SidebarLayout: React.FC<SidebarLayoutProps> = ({ children }) => {
     
       <Sidebar />
       
-      <main className="flex-grow p-3 bg-[#FAFBFC] flex flex-col overflow-y-auto">
+      <main className="flex-grow p-3 bg-[#FAFBFC] dark:bg-[#181818] flex flex-col overflow-y-auto">
         {children} 
       </main>
     </div>
