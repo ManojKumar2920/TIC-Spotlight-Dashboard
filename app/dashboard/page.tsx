@@ -9,7 +9,9 @@ import DashboardTopNav from "@/components/Dashboard/DashboardTopNav";
 import { PieChartComponent } from "@/components/Dashboard/PieChart";
 import { RadialChartComponent } from "@/components/Dashboard/RadialChart";
 import SidebarLayout from "@/components/ReusableComponents/SidebarLayout";
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
+const Map = dynamic(() => import('../../components/Home/Map'), { ssr: false });
 
 
 type Ad = {
@@ -64,13 +66,16 @@ const Page: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-row border rounded-[14px] bg-white dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
+              <div className="flex flex-col border rounded-[14px] bg-white dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
                 Latitude and Longitude
+                <Map />
                 
               </div>
 
-              <div className="flex flex-row border rounded-[14px] bg-white  dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
+              <div className="flex flex-col border rounded-[14px] bg-white  dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
                 Total Ad plays
+                <Map />
+
               </div>
             </>
           )}

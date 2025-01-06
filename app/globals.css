@@ -29,11 +29,11 @@ body {
 }
 
 .placeholder-selected {
-  color: #95989B; /* Your desired placeholder color */
+  color: #95989B;
 }
 
 select {
-  color: #151414; /* Default text color */
+  color: #151414;
 }
 
 
@@ -41,14 +41,6 @@ select {
   background: linear-gradient(rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0.8) 80%), 
   linear-gradient(rgba(148, 233, 184, 1) 20%, rgba(148, 233, 184, 1) 20%); 
   background-blend-mode: overlay; }
-
-
-  /* .bg-pending-custom-yellow {
-    background: linear-gradient(rgba(255, 255, 255, 0.8) 80%, rgba(255, 255, 255, 0.8) 80%), 
-  linear-gradient(rgba(255, 215, 85) 20%, rgba(255, 215, 85) 20%); 
-  background-blend-mode: overlay; }
-  
- */
 
  .custom-gradient { background: linear-gradient(201.18deg, #C9DEFF 3.14%, #C9DEFF 86.04%); }
 

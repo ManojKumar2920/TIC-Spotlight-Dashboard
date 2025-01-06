@@ -5,14 +5,8 @@ import TopNav from '@/components/Home/TopNav'
 import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
 import dynamic from 'next/dynamic';
 import React from 'react'
-import Map from "../components/Map/Map";
+const Map = dynamic(() => import('../components/Home/Map'), { ssr: false });
 
-// const Map = dynamic(() => import('../components/Map/Map'),
-//  { loading: () =>
-//      <p>Loading...</p>, 
-//      ssr: false,
-//      });
-     
 const page = () => {
     return (
         <div>
