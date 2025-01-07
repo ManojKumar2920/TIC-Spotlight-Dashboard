@@ -62,7 +62,6 @@ const Map = () => {
       controller: false,
       layers: [],
       onWebGLInitialized: () => {
-        // @ts-ignore
         deck.setProps({ gl: mapRef.current?.getCanvas().getContext('webgl2') });
       }
     });
