@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import Button from '@/components/ReusableComponents/Button';
 import { Download as UploadIcon } from 'lucide-react';
-import Image from 'next/image';
-
 type RenderModelFormProps = {
   onBack: () => void;
 };

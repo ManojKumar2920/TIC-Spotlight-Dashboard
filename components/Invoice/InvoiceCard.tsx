@@ -17,7 +17,6 @@ type InvoiceCardProps = {
 const InvoiceCard: React.FC<InvoiceCardProps> = ({
   title,
   dateRange,
-  totalScreenTime,
   totalBudget,
   status,
   totalAmount,

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Button from "../ReusableComponents/Button";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button as DatePicker } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -18,7 +17,6 @@ import {
   SendIcon,
   FilterIcon,
   SearchIcon,
-  CheckBoxIcon,
 } from "../ReusableComponents/Icon";
 import { customerRequests } from "@/Data/CustomerData";
 import { Checkbox } from "@/components/ui/checkbox"

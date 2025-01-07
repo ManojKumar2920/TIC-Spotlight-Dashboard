@@ -1,7 +1,6 @@
-import React from 'react'
-import Image from 'next/image'
-import { LeftIcon } from '../../ReusableComponents/Icon'
-import Link from 'next/link'
+import React from 'react';
+import { LeftIcon } from '../../ReusableComponents/Icon';
+import Link from 'next/link';
 
 const CampaignTopNav = () => {
   return (

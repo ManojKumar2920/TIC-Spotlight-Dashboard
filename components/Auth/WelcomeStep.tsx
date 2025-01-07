@@ -9,10 +9,8 @@ import {
   FaceBookIcon,
   GoogleIcon,
   InstaIcon,
-  SubmitIcon,
 } from "../ReusableComponents/Icon";
 import { GoArrowRight } from "react-icons/go";
-import { hr } from "date-fns/locale";
 
 type WelcomeStepProps = {
   onNext: (email: string) => void;
@@ -44,8 +42,8 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onNext }) => {
       <div className="text-center space-y-2 mt-7">
       <h2 className="text-2xl font-bold leading-[24.72px]">Welcome to Spotlight</h2>
         <p className="text-[rgba(0,0,0,0.66)] dark:text-white text-sm leading-[22px]">
-          Sign into your account. If you don't have one, <br />
-          you'll be prompted to create one.
+          Sign into your account. If you don&apos;t have one, <br />
+          you&apos;ll be prompted to create one.
         </p>
       </div>
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { DownArrowIcon } from './Icon';
 // import { DownArrowIcon } from './Icon';
 interface SelectProps {
@@ -7,7 +6,7 @@ interface SelectProps {
   name: string;
   options: { label: string; value: string }[];
   value: string | undefined;
-  onChange: (selectedOption: any) => void;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   required?: boolean;
   placeholder?: string;
   className?: string;

@@ -10,7 +10,7 @@ type VerifyAccountStepProps = {
   onNext: () => void;
 };
 
-const VerifyAccountStep: React.FC<VerifyAccountStepProps> = ({ email, onNext }) => {
+const VerifyAccountStep: React.FC<VerifyAccountStepProps> = ({  onNext }) => {
   const [code, setCode] = useState(["", "", "", ""]);
 
   const handleChange = (value: string, index: number) => {

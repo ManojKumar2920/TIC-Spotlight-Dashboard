@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { NotificationIcon, ProfileIcon2 } from "../ReusableComponents/Icon";
-import Image from "next/image";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
