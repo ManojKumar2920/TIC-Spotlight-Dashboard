@@ -14,51 +14,54 @@ import {
 
 
 
-const DashboardTopNav = ({title}:{title: string}) => {
+const DashboardTopNav = ({ title }: { title: string }) => {
   const [date, setDate] = React.useState<Date>();
   const today = format(new Date(), "MMM d");
 
   return (
     <div className="flex items-center justify-between h-[48px] bg-transparent text-black dark:text-white px-4">
-      <div className="text-2xl font-bold leading-[48px]">
-      {title}
+      <div className="font-bold leading-[26px] text-2xl md:font-bold lg:text-base md:leading-[48px]">
+        {title}
       </div>
 
       <div className="flex items-center space-x-5">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "w-full justify-start text-left font-normal border-none",
-                !date &&
+        <div className="hidden">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-full justify-start text-left font-normal border-none",
+                  !date &&
                   "text-muted-foreground bg-[#FFFFFF] dark:bg-[#1e1e1e] h-[44px] rounded-[20px]"
-              )}
-            >
-              {date ? (
-                format(date, "MMM d")
-              ) : (
-                <span className="text-[#000000] dark:text-white ">{today}</span>
-              )}
-              <CalendarIcon className="ml-auto" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto p-0" align="start">
-            <Calendar
-              mode="single"
-              selected={date || undefined}
-              onSelect={setDate}
-              initialFocus
-            />
-          </PopoverContent>
-        </Popover>
+                )}
+              >
+                {date ? (
+                  format(date, "MMM d")
+                ) : (
+                  <span className="text-[#000000] dark:text-white ">{today}</span>
+                )}
+                <CalendarIcon className="ml-auto" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={date || undefined}
+                onSelect={setDate}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
+
 
         <div className="flex items-center space-x-5">
           <div >
-            <NotificationIcon className="w-5 h-5"/>
+            <NotificationIcon className="w-5 h-5" />
           </div>
           <div >
-            <ProfileIcon2 className="w-6 h-6"/>
+            <ProfileIcon2 className="w-6 h-6" />
           </div>
         </div>
       </div>

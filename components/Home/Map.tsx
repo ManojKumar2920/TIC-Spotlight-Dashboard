@@ -134,7 +134,7 @@ const Map = () => {
             id: 'taxi-layer',
             data: taxiLocations,
             getPosition: (d: TaxiLocation) => d.position,
-            getFillColor: [255, 204, 0, 180], // Yellow color for taxis
+            getFillColor: [255, 204, 0, 180], 
             getRadius: 40,
             radiusMinPixels: 4,
             radiusMaxPixels: 15,
@@ -166,7 +166,7 @@ const Map = () => {
           pointerEvents: 'none'
         }}
       />
-      <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white p-2 rounded">
+      <div className="absolute top-2 text-sm bg-black bg-opacity-70 text-white p-2 rounded">
         Active Taxis: {taxiLocations.length}
       </div>
     </div>

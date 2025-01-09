@@ -10,23 +10,25 @@ type VerifyAccountStepProps = {
   onNext: () => void;
 };
 
-const VerifyAccountStep: React.FC<VerifyAccountStepProps> = ({  onNext }) => {
+const VerifyAccountStep: React.FC<VerifyAccountStepProps> = ({ onNext }) => {
   const [code, setCode] = useState(["", "", "", ""]);
 
   const handleChange = (value: string, index: number) => {
-    if (value.length > 1) return; // Prevent entering more than one character
+    if (value.length > 1) return;
     const newCode = [...code];
     newCode[index] = value;
     setCode(newCode);
 
-    // Automatically focus the next input if current input is filled
     if (value && index < 3) {
       const nextInput = document.getElementById(`code-input-${index + 1}`);
       nextInput?.focus();
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
     if (e.key === "Backspace" && !code[index] && index > 0) {
       // If backspace is pressed and current input is empty, move to the previous input
       const prevInput = document.getElementById(`code-input-${index - 1}`);
@@ -74,7 +76,11 @@ const VerifyAccountStep: React.FC<VerifyAccountStepProps> = ({  onNext }) => {
         className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center hover:bg-black"
       >
         <span className="flex-grow text-center">Verify</span>
-        <Image src={SubmitIcon} alt={""} className="absolute right-2 w-[35px] h-[35px]" />
+        <Image
+          src={SubmitIcon}
+          alt={""}
+          className="absolute right-2 w-[35px] h-[35px]"
+        />
       </Button>
     </div>
   );

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "../ReusableComponents/Button";
 import { SubmitIcon } from "../ReusableComponents/Icon";
 import Image from "next/image";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import LabelInput from "../ReusableComponents/LabelInput";
 
 type CreatePasswordStepProps = {
@@ -14,9 +14,9 @@ type CreatePasswordStepProps = {
 };
 
 const CreatePasswordStep: React.FC<CreatePasswordStepProps> = ({ email }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [password, setPassword] = useState("");
- 
+
   const handleSubmit = () => {
     if (password.length >= 8) {
       toast.success("Password created successfully!");
@@ -32,7 +32,9 @@ const CreatePasswordStep: React.FC<CreatePasswordStepProps> = ({ email }) => {
     <div className="flex flex-grow flex-col space-y-6 p-5 mt-5 ">
       <ToastContainer />
       <div className="dark:bg-[#1e1e1e] ">
-        <h2 className="text-2xl font-semibold text-center">Create a Password</h2>
+        <h2 className="text-2xl font-semibold text-center">
+          Create a Password
+        </h2>
         <p className="text-center text-gray-600 dark:text-white">
           Set a strong password for your verified account to enhance security.
         </p>
@@ -41,19 +43,23 @@ const CreatePasswordStep: React.FC<CreatePasswordStepProps> = ({ email }) => {
       <LabelInput
         type="email"
         value={email}
-        onChange={(e) => setPassword(e.target.value)} labelText={""} htmlFor={""}     
-        disabled   
-  
+        onChange={(e) => setPassword(e.target.value)}
+        labelText={""}
+        htmlFor={""}
+        disabled
       />
       <div className="flex flex-col space-y-3">
         <LabelInput
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Create a password" labelText={""} htmlFor={""}
+          placeholder="Create a password"
+          labelText={""}
+          htmlFor={""}
         />
         <span className="text-sm text-gray-500">
-          Use 8+ characters with a mix of letters, numbers, and symbols for a strong password
+          Use 8+ characters with a mix of letters, numbers, and symbols for a
+          strong password
         </span>
       </div>
 

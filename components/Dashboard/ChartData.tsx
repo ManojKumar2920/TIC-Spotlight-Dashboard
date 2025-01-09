@@ -40,7 +40,7 @@ export function BarChartComponent() {
       <CardHeader>
         <CardTitle className="font-medium text-base">Sum of total count by Month & day</CardTitle>
       </CardHeader>
-      <CardContent className="flex-">
+      <CardContent>
       <ChartContainer config={chartConfig} className="h-64 w-full dark:bg-[#1e1e1e]">  
           <BarChart
             data={chartData}

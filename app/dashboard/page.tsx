@@ -8,7 +8,7 @@ import DashboardNav from "@/components/Dashboard/DashboardNav";
 import DashboardTopNav from "@/components/Dashboard/DashboardTopNav";
 import { PieChartComponent } from "@/components/Dashboard/PieChart";
 import { RadialChartComponent } from "@/components/Dashboard/RadialChart";
-import SidebarLayout from "@/components/ReusableComponents/SidebarLayout";
+import SidebarLayout from "@/components/ReusableComponents/Siderbar/Layout";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 const Map = dynamic(() => import('../../components/Home/Map'), { ssr: false });
@@ -39,29 +39,29 @@ const Page: React.FC = () => {
           ) : (
             <>
               <div>
-                <DashboardTopNav title="Welcome to Dashboard"/>
+                <DashboardTopNav title="Welcome to Dashboard" />
               </div>
 
               <div>
                 <DashboardNav />
               </div>
 
-              <div className="flex flex-row gap-4 p-3 ">
-                <div className="flex-initial w-2/3 ">
+              <div className="flex flex-col lg:flex-row gap-4 p-3">
+                <div className="flex-initial w-full lg:w-2/3">
                   <BarChartComponent />
                 </div>
 
-                <div className="flex-initial w-1/3 ">
+                <div className="flex-initial w-full lg:w-1/3">
                   <PieChartComponent />
                 </div>
               </div>
 
-              <div className="flex flex-row gap-4 p-3">
-                <div className="flex-initial w-1/3">
+              <div className="flex flex-col lg:flex-row gap-4 p-3">
+                <div className="flex-initial w-full lg:w-1/3">
                   <RadialChartComponent />
                 </div>
 
-                <div className="flex-initial w-2/3 border rounded-[14px] dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md">
+                <div className="flex-initial w-full lg:w-2/3 border rounded-[14px] bg-white  dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md">
                   <AdList onAdClick={handleAdClick} />
                 </div>
               </div>
@@ -69,7 +69,7 @@ const Page: React.FC = () => {
               <div className="flex flex-col border rounded-[14px] bg-white dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">
                 Latitude and Longitude
                 <Map />
-                
+
               </div>
 
               <div className="flex flex-col border rounded-[14px] bg-white  dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md h-[491px]">

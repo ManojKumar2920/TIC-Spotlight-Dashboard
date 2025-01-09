@@ -1,6 +1,6 @@
 import TopNav from '@/components/Home/TopNav'
 import InvoiceList from '@/components/Invoice/InvoiceList'
-import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
+import SidebarLayout from '@/components/ReusableComponents/Siderbar/Layout'
 import React from 'react'
 
 const page = () => {

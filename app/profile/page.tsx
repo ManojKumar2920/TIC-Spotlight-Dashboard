@@ -1,5 +1,5 @@
 import UserDetails from '@/components/Profile/UserDetails'
-import SidebarLayout from '@/components/ReusableComponents/SidebarLayout'
+import SidebarLayout from '@/components/ReusableComponents/Siderbar/Layout'
 import React from 'react'
 
 const page = () => {
@@ -8,7 +8,7 @@ const page = () => {
   return (
     <div>
         <SidebarLayout>
-            <UserDetails />
+            <UserDetails />  
         </SidebarLayout>
       
     </div>

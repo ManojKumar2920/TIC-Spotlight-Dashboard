@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../ReusableComponents/Button";
-import { Download as DownloadIcon} from 'lucide-react';
+import { Download as DownloadIcon } from "lucide-react";
 type InvoiceCardProps = {
   title: string;
   dateRange: string;
@@ -36,7 +36,7 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({
     <div className="relative border border-bg-[#F2E9E9] h-[402px] p-6 rounded-lg bg-white dark:border-[#1e1e1e] dark:bg-[#1e1e1e] shadow-md w-[271px] max-w-md">
       <div className="flex items-center justify-between mb-2">
         <h2 className="font-bold text-base">{title}</h2>
-        <DownloadIcon  className="text-black dark:text-white"/>
+        <DownloadIcon className="text-black dark:text-white" />
       </div>
 
       <hr className="border-gray-300" />
@@ -81,8 +81,8 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({
       </div>
 
       <Button className="absolute bottom-6 right-6 flex justify-center items-center text-[#000000] dark:text-[#FFFFFF] text-xs border border-[#000000] dark:border-[#FFFFFF] w-[70px] h-[24px] bg-white dark:bg-[#333333]">
-  Pay
-</Button>
+        Pay
+      </Button>
     </div>
   );
 };

@@ -38,7 +38,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
           placeholder={placeholder}
           name={name}
           className="w-full h-[44px] rounded-[25px] px-6 py-2 mt-2 bg-[#FAFBFC] text-sm leading-[19px] focus:outline-none placeholder:text-gray-400" 
-          style={{color: 'black'}} // Add custom inline style
+          style={{color: 'black'}}
         />
       </div>
     );

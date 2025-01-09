@@ -18,8 +18,10 @@ import {
   FilterIcon,
   SearchIcon,
 } from "../ReusableComponents/Icon";
+import { HiMenu, HiX } from "react-icons/hi";
 import { customerRequests } from "@/Data/CustomerData";
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox";
+import { CgSortAz as SortIcon } from "react-icons/cg";
 interface CustomerRequestData {
   companyName: string;
   customerName: string;
@@ -32,6 +34,7 @@ interface CustomerRequestData {
 
 const CustomerRequest: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
@@ -70,7 +73,7 @@ const CustomerRequest: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setItemsPerPage(Number(event.target.value));
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const paginatedData = customerRequests.slice(
@@ -80,11 +83,27 @@ const CustomerRequest: React.FC = () => {
 
   return (
     <div className="bg-white dark:bg-[#131313] dark:text-white shadow rounded-lg space-y-4">
-      <div className="flex flex-row justify-between items-center mb-4 p-4">
-        <h1 className="text-sm font-medium text-[#53545C] dark:text-white ">Customer Request</h1>
+  <div className="flex flex-row justify-between items-center mb-4 p-4 relative">
+    <h1 className="text-sm font-medium text-[#53545C] dark:text-white">
+      Customer Request
+    </h1>
 
-        <div className="flex items-center space-x-2">
-          <div className="flex items-center border border-[#CFD3D4] dark:bg-[#333333] rounded-[4px] overflow-hidden h-[29px] w-[200px]">
+    <div className="relative">
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="text-2xl text-white lg:hidden"
+      >
+        {isMenuOpen ? <HiX /> : <HiMenu />}
+      </button>
+
+      <div
+        className={`${
+          isMenuOpen ? "block" : "hidden"
+        } absolute top-full right-0 mt-2 shadow-lg rounded-lg p-4 space-y-4 bg-white dark:bg-[#131313] lg:block lg:static lg:mt-0 lg:shadow-none lg:rounded-none`}
+      >
+        <div className="flex flex-col lg:flex-row lg:justify-end lg:items-center lg:space-x-2 space-y-2 lg:space-y-0">
+          {/* Search Input */}
+          <div className="flex items-center border border-[#CFD3D4] dark:bg-[#333333] rounded-[4px] overflow-hidden h-[29px] w-full lg:w-[200px]">
             <span className="px-3">
               <SearchIcon className="w-4 h-4" />
             </span>
@@ -94,16 +113,20 @@ const CustomerRequest: React.FC = () => {
               className="flex-1 p-1 outline-none h-full text-xs dark:bg-[#333333]"
             />
           </div>
+
+          {/* Filter Button */}
           <Button className="bg-transparent text-[#53545C] dark:text-white dark:bg-[#333333] rounded-[4px] flex items-center justify-center gap-2 border border-[#53545C] hover:bg-white h-[29px]">
             <FilterIcon className="w-4 h-4" />
-            <span className="hidden sm:inline text-xs">Filter</span>
+            <span className="sm:inline text-xs">Filter</span>
           </Button>
+
+          {/* Date Picker */}
           <Popover>
             <PopoverTrigger asChild>
               <DatePicker
                 variant="outline"
                 className={cn(
-                  "inline-flex items-center justify-start text-left font-normal borderdark:text-white dark:bg-[#333333]   border-[#53545C] h-[29px] rounded-[4px]",
+                  "inline-flex items-center  font-normal border dark:text-white dark:bg-[#333333] border-[#53545C] h-[29px] rounded-[4px]",
                   !date && "text-muted-foreground bg-transparent"
                 )}
               >
@@ -111,11 +134,13 @@ const CustomerRequest: React.FC = () => {
                 {date ? (
                   <span className="ml-2">{format(date, "MMM d")}</span>
                 ) : (
-                  <span className="text-[#53545C] dark:text-white text-xs">Date</span>
+                  <span className="text-[#53545C] dark:text-white text-xs">
+                    Date
+                  </span>
                 )}
               </DatePicker>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
+            <PopoverContent className="w-auto p-0" align="end">
               <Calendar
                 mode="single"
                 selected={date}
@@ -124,81 +149,85 @@ const CustomerRequest: React.FC = () => {
               />
             </PopoverContent>
           </Popover>
-          <Button className="bg-transparent text-[#53545C] dark:text-white dark:bg-[#333333]  rounded-[4px] flex items-center justify-center gap-2 border border-[#53545C] hover:bg-white h-[29px]">
+
+          <Button className="bg-transparent text-[#53545C] dark:text-white dark:bg-[#333333] rounded-[4px] flex items-center justify-center gap-2 border border-[#53545C] hover:bg-white h-[29px]">
             <SendIcon width={16} height={16} />
-            <span className="hidden sm:inline text-xs">Share</span>
+            <span className="sm:inline text-xs">Share</span>
           </Button>
-          <Button className="bg-transparent text-[#53545C] dark:text-white dark:bg-[#333333]  rounded-[4px] flex items-center justify-center gap-2 border border-[#53545C] hover:bg-white h-[29px]">
+
+          
+          <Button className="bg-transparent text-[#53545C] dark:text-white dark:bg-[#333333] rounded-[4px] flex items-center justify-center gap-2 border border-[#53545C] hover:bg-white h-[29px]">
             <span className="text-xs">Bulk Action</span>
-            <DownArrowIcon
-              
-              width={16}
-              height={16}
-            />
+            <DownArrowIcon width={16} height={16} />
           </Button>
         </div>
       </div>
-
-      <table className="min-w-full table-auto rounded-lg">
-        <thead className=" border-t border-b border-[#CFD3D4]  h-[52px]">
-          <tr className="text-left">
-          <th className="px-4 py-2">
-<Checkbox id="selectAll" className="border-[#CFD3D4] dark:text-white align-middle" checked={selectAll} onCheckedChange={handleSelectAll} />
-</th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Company Name
-            </th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Customer Name
-            </th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Order Date
-            </th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Ad Name
-            </th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Ad Run Dates
-            </th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Order Total
-            </th>
-            <th className="px-4 py-2 text-sm font-medium dark:text-white text-[#53545C]">
-              Status
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {paginatedData.map((request: CustomerRequestData, index: number) => (
-            <tr key={index}>
-              <td className="px-4 py-2">
-              <Checkbox className="border-[#CFD3D4] align-middle" checked={selectedRows.includes(`row-${(currentPage - 1) * itemsPerPage + index}`)} onCheckedChange={() => handleRowSelection(`row-${(currentPage - 1) * itemsPerPage + index}`)} />
-                    </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                {request.companyName}
-              </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                {request.customerName}
-              </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                {request.orderDate}
-              </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                {request.adName}
-              </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                {request.adRunDates}
-              </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                ₹{request.orderTotal.toFixed(2)}
-              </td>
-              <td className="px-4 py-2 text-sm dark:text-white text-[#53545C]">
-                {request.status}
-              </td>
+    </div>
+    </div>
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto rounded-lg">
+          <thead className="border-t border-b border-gray-300 h-13">
+            <tr className="text-left">
+              <th className="px-4 py-2">
+                <Checkbox
+                  id="selectAll"
+                  className="border-gray-300 dark:text-white align-middle"
+                  checked={selectAll}
+                  onCheckedChange={handleSelectAll}
+                />
+              </th>
+              {[
+                "Company Name",
+                "Customer Name",
+                "Order Date",
+                "Ad Name",
+                "Ad Run Dates",
+                "Order Total",
+                "Status",
+              ].map((header, index) => (
+                <th
+                  key={index}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  <div className="flex items-center">
+                    <span>{header}</span>
+                    <SortIcon className="w-6 h-6 ml-2" />
+                  </div>
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {paginatedData.map(
+              (request: CustomerRequestData, index: number) => (
+                <tr key={index}>
+                  <td className="px-4 py-2">
+                    <Checkbox
+                      className="border-gray-300 align-middle"
+                      checked={selectedRows.includes(
+                        `row-${(currentPage - 1) * itemsPerPage + index}`
+                      )}
+                      onCheckedChange={() =>
+                        handleRowSelection(
+                          `row-${(currentPage - 1) * itemsPerPage + index}`
+                        )
+                      }
+                    />
+                  </td>
+                  {Object.entries(request).map(([key, value]) => (
+                    <td
+                      key={key}
+                      className="px-4 py-2 text-sm text-gray-700 dark:text-white"
+                    >
+                      {key === "orderTotal" ? `₹${value.toFixed(2)}` : value}
+                    </td>
+                  ))}
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
 
       <div className="flex justify-between items-center mt-4 px-4 py-2 border-t border-[#CFD3D4] ">
         <div className="flex items-center space-x-2">
@@ -212,7 +241,10 @@ const CustomerRequest: React.FC = () => {
             <option value={10}>10</option>
             <option value={20}>20</option>
           </select>
-          <label htmlFor="items-per-page" className="text-xs text-[#53545C] dark:text-white ">
+          <label
+            htmlFor="items-per-page"
+            className="text-xs text-[#53545C] dark:text-white "
+          >
             Items per page
           </label>
         </div>
@@ -229,8 +261,13 @@ const CustomerRequest: React.FC = () => {
               </option>
             ))}
           </select>
-          <span className="text-xs text-[#53545C] dark:text-white ">of {totalPages}</span>
-          <label htmlFor="page-select" className="text-xs dark:text-white  text-[#53545C]">
+          <span className="text-xs text-[#53545C] dark:text-white ">
+            of {totalPages}
+          </span>
+          <label
+            htmlFor="page-select"
+            className="text-xs dark:text-white  text-[#53545C]"
+          >
             Pages
           </label>
         </div>

@@ -1,6 +1,6 @@
 //Company Logo
 import CompanyLogo from "@/public/SidebarIcons/company_logo.png";
-
+import CompanyLogoMobile from "@/public/SidebarIcons/CompanyLogoMobile.svg"
 // Sidebar Icons
 
 import { TbFileInvoice as InvoiceIcon } from "react-icons/tb";
@@ -69,6 +69,7 @@ import DashboardProfile from "@/public/Dashboard/profile-2user.svg";
 
 export {
     CompanyLogo,
+    CompanyLogoMobile,
     HomeIcon,
     InvoiceIcon,
     ProfileIcon,
