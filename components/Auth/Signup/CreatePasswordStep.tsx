@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Button from "../ReusableComponents/Button";
-import { SubmitIcon } from "../ReusableComponents/Icon";
+import Button from "../../ReusableComponents/Button";
+import { SubmitIcon } from "../../ReusableComponents/Icon";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import LabelInput from "../ReusableComponents/LabelInput";
+import LabelInput from "../../ReusableComponents/LabelInput";
 
 type CreatePasswordStepProps = {
   email: string;
@@ -29,7 +29,7 @@ const CreatePasswordStep: React.FC<CreatePasswordStepProps> = ({ email }) => {
   };
 
   return (
-    <div className="flex flex-grow flex-col space-y-6 p-5 mt-5 ">
+    <div className="flex flex-grow flex-col space-y-6  mt-5 ">
       <ToastContainer />
       <div className="dark:bg-[#1e1e1e] ">
         <h2 className="text-2xl font-semibold text-center">
@@ -67,7 +67,7 @@ const CreatePasswordStep: React.FC<CreatePasswordStepProps> = ({ email }) => {
         onClick={handleSubmit}
         className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center hover:bg-black"
       >
-        <span className="flex-grow text-center">Submit</span>
+        <span className="flex-grow text-center">Create Account</span>
         <Image
           src={SubmitIcon}
           alt={""}

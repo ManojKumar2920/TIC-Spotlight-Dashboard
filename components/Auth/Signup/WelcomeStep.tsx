@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import Button from "../ReusableComponents/Button";
+import Button from "../../ReusableComponents/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -9,7 +9,7 @@ import {
   FaceBookIcon,
   GoogleIcon,
   InstaIcon,
-} from "../ReusableComponents/Icon";
+} from "../../ReusableComponents/Icon";
 import { GoArrowRight } from "react-icons/go";
 
 type WelcomeStepProps = {
@@ -61,9 +61,9 @@ const WelcomeStep: React.FC<WelcomeStepProps> = ({ onNext }) => {
           onClick={handleSubmit}
           className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center dark:bg-[#111111] hover:bg-black"
         >
-          <span className="flex-grow text-center">Submit</span>
-          <div className="absolute right-2 p-2 rounded-full w-[35px] h-[35px] bg-black  dark:bg-white text-white dark:text-black flex items-center justify-center">
-            <GoArrowRight className="w-6 h-6" />
+          <span className="flex-grow text-center">Continue</span>
+          <div className="absolute right-2 p-2 rounded-full w-[35px] h-[35px] bg-white text-white dark:text-black flex items-center justify-center">
+            <GoArrowRight className="w-6 h-6 text-black"/>
           </div>
         </Button>
       </div>

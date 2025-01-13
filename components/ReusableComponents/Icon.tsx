@@ -34,6 +34,8 @@ import GoogleIcon from "@/public/Auth/Google.svg";
 import FaceBookIcon from "@/public/Auth/Facebook.svg";
 import InstaIcon from "@/public/Auth/Insta.svg";
 import AppleIcon from "@/public/Auth/Apple.svg"
+
+
 // import DownArrowIcon from "@/public/Ad/arrow-down.svg"
 import { RiArrowDownWideFill as DownArrowIcon} from "react-icons/ri";
 

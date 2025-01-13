@@ -62,7 +62,7 @@ const Page: React.FC = () => {
                 </div>
 
                 <div className="flex-initial w-full lg:w-2/3 border rounded-[14px] bg-white  dark:bg-[#1e1e1e] dark:border-[#1e1e1e] p-4 shadow-md">
-                  <AdList onAdClick={handleAdClick} />
+                  <AdList />
                 </div>
               </div>
 
