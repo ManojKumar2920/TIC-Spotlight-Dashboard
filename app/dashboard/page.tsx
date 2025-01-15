@@ -1,6 +1,4 @@
 "use client";
-
-import AdDetails from "@/components/Dashboard/AdDetails/AdDetails";
 import AdList from "@/components/Dashboard/AdList";
 import { BarChartComponent } from "@/components/Dashboard/ChartData";
 import DashboardNav from "@/components/Dashboard/DashboardNav";
@@ -9,17 +7,11 @@ import { PieChartComponent } from "@/components/Dashboard/PieChart";
 import { RadialChartComponent } from "@/components/Dashboard/RadialChart";
 import SidebarLayout from "@/components/ReusableComponents/Siderbar/Layout";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React from "react";
+
 const Map = dynamic(() => import("../../components/Home/Map"), { ssr: false });
 
-type Ad = {
-  name: string;
-  adruns: number;
-  status: string;
-  date: string;
-  time: string;
-  totalhours: string;
-};
+
 
 const Page: React.FC = () => {
   return (

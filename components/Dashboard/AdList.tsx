@@ -20,7 +20,6 @@ type Ad = {
 
 const AdList: React.FC = ({}) => {
   const { setSelectedAd } = useAdDetails();
-  const router = useRouter();
 
   const adStatus = [
     { name: "All" },
