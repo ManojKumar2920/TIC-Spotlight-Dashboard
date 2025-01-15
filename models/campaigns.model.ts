@@ -51,7 +51,6 @@ const campaignsSchema = new Schema<ICampaigns>(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
     },
     industry: {
       type: String,

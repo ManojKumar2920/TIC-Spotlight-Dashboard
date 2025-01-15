@@ -9,30 +9,46 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
 
-    const handleSubmit = () => {
-        if (!email) {
-            toast.error("Please enter a valid email.");
-        } else if (password.length < 8) {
-            toast.error("Password must be at least 8 characters.");
-        } else {
-            toast.success("Login successful!");
-            setTimeout(() => {
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post("/api/signin", { email, password });
+            if (response.status === 200) {
+                toast.success("Signin successful!");
                 router.push("/");
-            }, 1500);
+                console.log(response.data);
+            } else {
+                toast.error(response.data.message || "Something went wrong.");
+            }
+        } catch (error: any) {
+            if (error.response && error.response.data) {
+                toast.error(error.response.data.message || "An error occurred.");
+            } else if (error instanceof Error) {
+                toast.error(error.message || "An unexpected error occurred.");
+            } else {
+                toast.error("An unexpected error occurred. Please try again.");
+            }
+            console.error("Login error:", error);
         }
     };
 
+
+
+
+
+
     return (
         <div>
-            <div className="flex flex-grow flex-col space-y-8 p-5 dark:bg-[#1e1e1e]">
+            <div className="flex flex-grow flex-col space-y-5 p-5 dark:bg-[#1e1e1e] h-[560px]">
                 <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
-                
+
                 <div className="text-center space-y-2 mt-7">
                     <h2 className="text-2xl font-bold leading-[24.72px]">
                         Welcome to Spotlight
@@ -60,7 +76,7 @@ const Login = () => {
                         placeholder="Enter your password"
                         className="font-medium block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white dark:bg-[#333333] text-sm shadow-sm focus:outline-none border border-[#9B9797]"
                     />
-                    
+
                     <Link href="/" className="ml-auto">
                         <span className="font-medium">Forgot Password?</span>
                     </Link>
@@ -76,22 +92,34 @@ const Login = () => {
                     </Button>
                 </div>
 
-                <div className="flex items-center my-4">
-                    <div className="flex-grow border-t border-[#8D8B8B]"></div>
-                    <span className="mx-4 text-[#9B9797]">OR</span>
-                    <div className="flex-grow border-t border-[#8D8B8B]"></div>
+                <div className="space-y-5">
+                    <div className="flex items-center my-4">
+                        <div className="flex-grow border-t border-[#8D8B8B]"></div>
+                        <span className="mx-4 text-[#9B9797]">OR</span>
+                        <div className="flex-grow border-t border-[#8D8B8B]"></div>
+                    </div>
+
+
+                    <Link href='/auth/signup'>
+                        <div className="text-center">
+                            <span>Don't have an account? </span>
+                            <span className="font-medium">Sign up here</span>
+                        </div>
+                    </Link>
+
+                    <div className="px-5">
+                        <Button
+                            className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center dark:bg-[#111111] hover:bg-black"
+                        >
+                            <span className="flex-grow text-center">Continue With Google</span>
+                            <div className="absolute left-2 p-2 rounded-full w-[35px] h-[35px] text-white dark:text-black flex items-center justify-center">
+                                <Image src={GoogleIcon} alt={"logo"} />
+                            </div>
+                        </Button>
+                    </div>
                 </div>
 
-                <div className="px-5">
-                    <Button
-                        className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center dark:bg-[#111111] hover:bg-black"
-                    >
-                        <span className="flex-grow text-center">Continue With Google</span>
-                        <div className="absolute left-2 p-2 rounded-full w-[35px] h-[35px] text-white dark:text-black flex items-center justify-center">
-                            <Image src={GoogleIcon} alt={"logo"} />
-                        </div>
-                    </Button>
-                </div>
+
             </div>
         </div>
     );

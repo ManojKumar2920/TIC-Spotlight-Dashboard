@@ -6,7 +6,7 @@ export async function sendEmailOtp(email: string, otp: string) {
     service: "gmail",
     auth: {
       user: process.env.NODE_MAILER_ID,
-      pass: process.env.NODE_MAILER_SECRET, // Use environment variables for production
+      pass: process.env.NODE_MAILER_SECRET, 
     },
   });
 
