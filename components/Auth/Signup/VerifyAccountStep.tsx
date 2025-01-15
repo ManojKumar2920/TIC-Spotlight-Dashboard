@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Button from "../ReusableComponents/Button";
-import { SubmitIcon } from "../ReusableComponents/Icon";
+import Button from "../../ReusableComponents/Button";
+import { SubmitIcon } from "../../ReusableComponents/Icon";
 import Image from "next/image";
 
 type VerifyAccountStepProps = {
