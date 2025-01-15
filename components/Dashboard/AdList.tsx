@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, } from "react";
+import React, { useState } from "react";
 import { Clock, Location } from "../ReusableComponents/Icon";
 import Image from "next/image";
 import { HiMenu } from "react-icons/hi";
+import Link from "next/link";
 import { slugify } from "@/app/utils/slugify";
 import { useAdDetails } from "@/contexts/AdContext";
 import { useRouter } from "next/navigation";
@@ -17,9 +18,7 @@ type Ad = {
   totalhours: string;
 };
 
-
-
-const AdList: React.FC = ({ }) => {
+const AdList: React.FC = ({}) => {
   const { setSelectedAd } = useAdDetails();
   const router = useRouter();
 
@@ -75,7 +74,6 @@ const AdList: React.FC = ({ }) => {
 
   const handleAdClick = (ad: Ad) => {
     setSelectedAd(ad);
-    router.push(`/dashboard/${slugify(ad.name)}`);
   };
 
   return (
@@ -87,10 +85,11 @@ const AdList: React.FC = ({ }) => {
             <div
               key={index}
               className={`bg-[#F1F5F9] dark:bg-[#2a2a2a] px-4 py-2 rounded-lg cursor-pointer 
-              ${selectedStatus === status.name
+              ${
+                selectedStatus === status.name
                   ? "bg-black text-white  dark:bg-neutral-700"
                   : ""
-                }`}
+              }`}
               onClick={() => setSelectedStatus(status.name)}
             >
               {status.name}
@@ -111,10 +110,11 @@ const AdList: React.FC = ({ }) => {
             <div
               key={index}
               className={`px-4 py-2 rounded-lg cursor-pointer 
-              ${selectedStatus === status.name
+              ${
+                selectedStatus === status.name
                   ? "bg-black text-white  dark:bg-neutral-700"
                   : ""
-                }`}
+              }`}
               onClick={() => {
                 setSelectedStatus(status.name);
                 setMenuOpen(false);
@@ -128,8 +128,8 @@ const AdList: React.FC = ({ }) => {
       {/* Adlist */}
       <div className="p-2 flex flex-row gap-4 flex-wrap">
         {filteredAdList.map((ad, index) => (
-
-          <div
+          <Link
+            href={`/dashboard/${slugify(ad.name)}`}
             key={index}
             className="bg-white rounded-lg flex flex-col w-[259px] h-[294px] cursor-pointer border border-gray dark:border-[#1e1e1e] dark:bg-[#1e1e1e] overflow-hidden"
             onClick={() => handleAdClick(ad)}
@@ -159,18 +159,18 @@ const AdList: React.FC = ({ }) => {
             <div className="flex justify-between items-center text-center dark:bg-[#2a2a2a] dark:border-[#1e1e1e] p-2">
               <p className="text-xs">{ad.date}</p>
               <div
-                className={`flex rounded-lg p-1 text-sm dark:text-black ${ad.status === "Active"
-                  ? "bg-green-100"
-                  : ad.status === "Waiting"
+                className={`flex rounded-lg p-1 text-sm dark:text-black ${
+                  ad.status === "Active"
+                    ? "bg-green-100"
+                    : ad.status === "Waiting"
                     ? "bg-blue-100"
                     : "bg-gray-100"
-                  }`}
+                }`}
               >
                 <p>{ad.status}</p>
               </div>
             </div>
-          </div>
-
+          </Link>
         ))}
       </div>
     </div>
