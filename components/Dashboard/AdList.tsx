@@ -4,7 +4,6 @@ import React, { useState, } from "react";
 import { Clock, Location } from "../ReusableComponents/Icon";
 import Image from "next/image";
 import { HiMenu } from "react-icons/hi";
-import Link from "next/link";
 import { slugify } from "@/app/utils/slugify";
 import { useAdDetails } from "@/contexts/AdContext";
 import { useRouter } from "next/navigation";

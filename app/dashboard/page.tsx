@@ -2,7 +2,6 @@
 
 import AdDetails from "@/components/Dashboard/AdDetails/AdDetails";
 import AdList from "@/components/Dashboard/AdList";
-
 import { BarChartComponent } from "@/components/Dashboard/ChartData";
 import DashboardNav from "@/components/Dashboard/DashboardNav";
 import DashboardTopNav from "@/components/Dashboard/DashboardTopNav";
@@ -26,9 +25,9 @@ type Ad = {
 const Page: React.FC = () => {
   const [selectedAd, setSelectedAd] = useState<Ad | null>(null);
 
-  const handleAdClick = (ad: Ad) => {
-    setSelectedAd(ad);
-  };
+  // const handleAdClick = (ad: Ad) => {
+  //   setSelectedAd(ad);
+  // };
 
   return (
     <div>
