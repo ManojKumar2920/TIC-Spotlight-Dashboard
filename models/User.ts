@@ -29,6 +29,22 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: false, 
     },
+    companyName: {
+      type: String,
+      required: false,
+    },
+    gstn: {
+      type: String,
+      required: false,
+    },
+    companyAddress: {
+      type: String,
+      required: false,
+    },
+    billingAddress: {
+      type: String,
+      required: false,
+    },
     role: {
       type: String,
       enum: ["user", "admin", "moderator"], 

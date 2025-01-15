@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-
+import {Document} from 'mongoose';
 export interface IDailyAdPlays extends Document {
   campaignId: Schema.Types.ObjectId;
   name: string;

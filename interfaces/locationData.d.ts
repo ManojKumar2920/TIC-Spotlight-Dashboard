@@ -1,4 +1,4 @@
-import { Document, Schema } from "mongoose";
+import { Document } from "mongoose";
 
 export interface ILocationData extends Document {
   campaignId: Schema.Types.ObjectId;
