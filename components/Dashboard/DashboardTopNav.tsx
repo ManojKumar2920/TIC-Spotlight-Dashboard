@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NotificationIcon, ProfileIcon2 } from "../ReusableComponents/Icon";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -11,42 +11,27 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import axios from "axios";
-import cookies from "next/headers";
+import Link from "next/link";
 
 const DashboardTopNav = ({ title }: { title: string }) => {
   const [date, setDate] = React.useState<Date>();
   const today = format(new Date(), "MMM d");
-  const [isVerified, setIsVerified] = useState<boolean | null>(null);
-  const refreshToken = cookies.get("refreshToken");
-  useEffect(() => {
-    const checkTokenVerification = async () => {
-      const response = await axios("/api/users", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${refreshToken}`
-        },
-      });
 
-      const data = await response.data();
-      if (data.message === "Unauthorized: Invalid refresh token") {
-        setIsVerified(false);
-      } else {
-        setIsVerified(true);
-      }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const response = await fetch("/api/auth-status");
+      const data = await response.json();
+      setIsAuthenticated(data.isAuthenticated);
     };
 
-    checkTokenVerification();
+    checkAuthStatus();
   }, []);
-
-  return { isVerified };
-};
-
 
   return (
     <div className="flex items-center justify-between h-[48px] bg-transparent text-black dark:text-white px-4">
-      <div className="font-bold leading-[26px] text-2xl  md:leading-[48px]">
+      <div className="font-bold leading-[26px] text-2xl md:font-bold lg:text-base md:leading-[48px]">
         {title}
       </div>
 
@@ -59,13 +44,15 @@ const DashboardTopNav = ({ title }: { title: string }) => {
                 className={cn(
                   "w-full justify-start text-left font-normal border-none",
                   !date &&
-                  "text-muted-foreground bg-[#FFFFFF] dark:bg-[#1e1e1e] h-[44px] rounded-[20px]"
+                    "text-muted-foreground bg-[#FFFFFF] dark:bg-[#1e1e1e] h-[44px] rounded-[20px]"
                 )}
               >
                 {date ? (
                   format(date, "MMM d")
                 ) : (
-                  <span className="text-[#000000] dark:text-white ">{today}</span>
+                  <span className="text-[#000000] dark:text-white ">
+                    {today}
+                  </span>
                 )}
                 <CalendarIcon className="ml-auto" />
               </Button>
@@ -81,13 +68,13 @@ const DashboardTopNav = ({ title }: { title: string }) => {
           </Popover>
         </div>
 
-
         <div className="flex items-center space-x-5">
-          {/* Conditionally render based on refreshToken */}
-          {!IsVerified ? (
-            <Button variant="outline" className="h-[44px] px-6">
-              Sign In
-            </Button>
+          {!isAuthenticated ? (
+            <Link href={"/signin"}>
+              <Button variant="outline" className="h-[44px] px-6">
+                Sign In
+              </Button>
+            </Link>
           ) : (
             <>
               <div>
@@ -99,10 +86,8 @@ const DashboardTopNav = ({ title }: { title: string }) => {
             </>
           )}
         </div>
-
       </div>
     </div>
-
   );
 };
 

@@ -11,7 +11,7 @@ export interface ICampaigns extends Document {
   location: string;
   frequency: number;
   timeSlot: string;
-  iconUrl: string;
+  imageUrl: string;
   createdAt: Date;
 
   //Please Check

@@ -45,7 +45,7 @@ const campaignsSchema = new Schema<ICampaigns>(
       type: String,
       required: [true, "Time slot is required"],
     },
-    iconUrl: {
+    imageUrl: {
       type: String,
       required: false,
     },
