@@ -10,10 +10,11 @@ import LabelInput from "@/components/ReusableComponents/LabelInput";
 
 interface PasswordStepProps {
   onNext: (password: string) => void;
+  initialPassword: string;
 }
 
-const PasswordStep: React.FC<PasswordStepProps> = ({ onNext }) => {
-  const [password, setPassword] = useState<string>("");
+const PasswordStep: React.FC<PasswordStepProps> = ({ initialPassword,onNext }) => {
+  const [password, setPassword] = useState<string>(initialPassword);
 
 
   const handleNext = () => {

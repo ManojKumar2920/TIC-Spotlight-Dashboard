@@ -44,6 +44,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    
+
     // Generate access and refresh tokens
     const accessToken = jwt.sign(
       {
@@ -76,6 +78,10 @@ export async function POST(req: NextRequest) {
       },
       { status: 200 }
     );
+
+    // Updating to True if eresponse is successful
+    user.isVerified = true;
+    await user.save();
 
     // Set refresh token in HTTP-only cookie
     const cookieStore = await cookies();

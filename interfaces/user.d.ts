@@ -8,6 +8,7 @@ export interface IUser extends Document {
     companyAddress: string;
     billingAddress: string;
     role: string; 
+    isVerified: boolean;
     createdAt: Date;
     updatedAt: Date;
   }

@@ -24,12 +24,16 @@ const SignupPage: React.FC = () => {
   };
 
   const handlePrevStep = () => {
-    if (currentStep === "emailPhone") {
-      setCurrentStep("name");
-    } else if (currentStep === "password") {
-      setCurrentStep("emailPhone");
-    } else if (currentStep === "verifyAccount") {
-      setCurrentStep("password");
+    switch (currentStep) {
+      case "emailPhone":
+        setCurrentStep("name");
+        break;
+      case "password":
+        setCurrentStep("emailPhone");
+        break;
+      case "verifyAccount":
+        setCurrentStep("password");
+        break;
     }
   };
 
@@ -54,8 +58,7 @@ const SignupPage: React.FC = () => {
         toast.error(response.data.message || "Failed to send OTP.");
       }
     } catch (error: any) {
-        toast.error(`Error: ${error.response.data.message || "Failed to send OTP. Please try again."}`);
-      
+      toast.error(`Error: ${error.response.data.message || "Failed to send OTP. Please try again."}`);
     }
   };
 
@@ -75,6 +78,7 @@ const SignupPage: React.FC = () => {
 
         {currentStep === "name" && (
           <NameStep
+            initialName={name}
             onNext={(name) => {
               setName(name);
               handleNextStep("emailPhone");
@@ -82,32 +86,35 @@ const SignupPage: React.FC = () => {
           />
         )}
         {currentStep === "emailPhone" && (
-          
-            <EmailPhoneStep
-              onNext={(email, phoneNumber) => {
-                setEmail(email);
-                setPhoneNumber(phoneNumber);
-                handleNextStep("password");
-              }}
-            />
-         
+
+          <EmailPhoneStep
+            initialEmail={email} // Pass current email value to the component
+            initialPhoneNumber={phoneNumber}
+            onNext={(email, phoneNumber) => {
+              setEmail(email);
+              setPhoneNumber(phoneNumber);
+              handleNextStep("password");
+            }}
+          />
+
         )}
         {currentStep === "password" && (
-        
-            <PasswordStep
-              onNext={(password) => {
-                setPassword(password); 
-                handleSendOtp(password);
-              }}
-            />
-         
+
+          <PasswordStep
+          initialPassword={password} // Pass current password value to the component
+          onNext={(password) => {
+              setPassword(password);
+              handleSendOtp(password);
+            }}
+          />
+
         )}
         {currentStep === "verifyAccount" && (
-          <VerifyAccountStep 
-            email={email} 
-            password={password} 
-            phoneNumber={phoneNumber} 
-            name={name} 
+          <VerifyAccountStep
+            email={email}
+            password={password}
+            phoneNumber={phoneNumber}
+            name={name}
           />
         )}
       </div>

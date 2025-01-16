@@ -16,6 +16,12 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const router = useRouter();
 
+    const handleLogin = () => { 
+       
+        const authUrl = `/api/google-auth`; 
+        window.location.href = authUrl;
+    };
+
 
     const handleSubmit = async () => {
         try {
@@ -103,12 +109,14 @@ const Login = () => {
                     <Link href='/auth/signup'>
                         <div className="text-center">
                             <span>Don't have an account? </span>
-                            <span className="font-medium">Sign up here</span>
+                            <span className="font-medium">Signup here</span>
                         </div>
                     </Link>
 
                     <div className="px-5">
                         <Button
+                        onClick={handleLogin}
+                      
                             className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center dark:bg-[#111111] hover:bg-black"
                         >
                             <span className="flex-grow text-center">Continue With Google</span>

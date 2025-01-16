@@ -50,6 +50,10 @@ const userSchema = new Schema<IUser>(
       enum: ["user", "admin", "moderator"], 
       default: "user",
     },
+    isVerified: { 
+      type: Boolean, 
+      default: false 
+    },
   },
   {
     timestamps: true, 

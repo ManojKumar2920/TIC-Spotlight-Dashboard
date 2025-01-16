@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NotificationIcon, ProfileIcon2 } from "../ReusableComponents/Icon";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -11,16 +11,42 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
-
+import axios from "axios";
+import cookies from "next/headers";
 
 const DashboardTopNav = ({ title }: { title: string }) => {
   const [date, setDate] = React.useState<Date>();
   const today = format(new Date(), "MMM d");
+  const [isVerified, setIsVerified] = useState<boolean | null>(null);
+  const refreshToken = cookies.get("refreshToken");
+  useEffect(() => {
+    const checkTokenVerification = async () => {
+      const response = await axios("/api/users", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${refreshToken}`
+        },
+      });
+
+      const data = await response.data();
+      if (data.message === "Unauthorized: Invalid refresh token") {
+        setIsVerified(false);
+      } else {
+        setIsVerified(true);
+      }
+    };
+
+    checkTokenVerification();
+  }, []);
+
+  return { isVerified };
+};
+
 
   return (
     <div className="flex items-center justify-between h-[48px] bg-transparent text-black dark:text-white px-4">
-      <div className="font-bold leading-[26px] text-2xl md:font-bold lg:text-base md:leading-[48px]">
+      <div className="font-bold leading-[26px] text-2xl  md:leading-[48px]">
         {title}
       </div>
 
@@ -57,15 +83,26 @@ const DashboardTopNav = ({ title }: { title: string }) => {
 
 
         <div className="flex items-center space-x-5">
-          <div >
-            <NotificationIcon className="w-5 h-5" />
-          </div>
-          <div >
-            <ProfileIcon2 className="w-6 h-6" />
-          </div>
+          {/* Conditionally render based on refreshToken */}
+          {!IsVerified ? (
+            <Button variant="outline" className="h-[44px] px-6">
+              Sign In
+            </Button>
+          ) : (
+            <>
+              <div>
+                <ProfileIcon2 className="w-6 h-6" />
+              </div>
+              <div>
+                <NotificationIcon className="w-5 h-5" />
+              </div>
+            </>
+          )}
         </div>
+
       </div>
     </div>
+
   );
 };
 

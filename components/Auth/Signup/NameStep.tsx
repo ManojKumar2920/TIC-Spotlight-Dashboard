@@ -8,17 +8,12 @@ import Link from 'next/link';
 
 interface StepProps {
   onNext: (name: string) => void;
+  initialName: string;
 }
 
- const icons = [
-    { name: "Google", image: GoogleIcon, href: "https://google.com" },
-    { name: "Instagram", image: InstaIcon, href: "https://instagram.com" },
-    { name: "Facebook", image: FaceBookIcon, href: "https://facebook.com" },
-    { name: "Apple", image: AppleIcon, href: "https://apple.com" },
-  ];
 
-const NameStep: React.FC<StepProps> = ({ onNext }) => {
-  const [name, setName] = useState('');
+const NameStep: React.FC<StepProps> = ({ initialName, onNext }) => {
+  const [name, setName] = useState<string>(initialName);
 
   const handleNext = () => {
     if (name.trim() === '') {
@@ -28,8 +23,14 @@ const NameStep: React.FC<StepProps> = ({ onNext }) => {
     }
   };
 
+  const handleRegister = () => { 
+       
+    const authUrl = `/api/google-auth`; 
+    window.location.href = authUrl;
+};
+
   return (
-    <div className="flex flex-grow flex-col space-y-6 p-5 dark:bg-[#1e1e1e] h-[430px]">
+    <div className="flex flex-grow flex-col space-y-6 p-5 dark:bg-[#1e1e1e] min-h-[430px]">
       <ToastContainer />
       <div className="text-center space-y-2 mt-7">
         <h2 className="text-2xl font-bold leading-[24.72px]">
@@ -47,7 +48,7 @@ const NameStep: React.FC<StepProps> = ({ onNext }) => {
         placeholder="Name"
         className="font-medium block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white dark:bg-[#333333] text-sm shadow-sm focus:outline-none border border-[#9B9797]"
       />
-       <Button
+      <Button
         onClick={handleNext}
         className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center hover:bg-black"
       >
@@ -73,20 +74,21 @@ const NameStep: React.FC<StepProps> = ({ onNext }) => {
             <span className="font-medium">Login here</span>
           </div>
         </Link>
-        
-        <div className="flex justify-center gap-[33px]">
-          {icons.map((icon, index) => (
-            <a
-              key={index}
-              href={icon.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-[54px] h-[54px] flex items-center justify-center dark:bg-[#333333] rounded-[3px] border"
-            >
-              <Image src={icon.image} alt={icon.name} className="w-6 h-6 " />
-            </a>
-          ))}
+
+        <div className="px-1">
+          <Button
+          onClick={handleRegister}
+            className="relative w-full h-[44px] bg-[#161515] text-white py-2 rounded flex items-center justify-center dark:bg-[#111111] hover:bg-black"
+          >
+            <span className="flex-grow text-center">Continue With Google</span>
+            <div className="absolute left-2 p-2 rounded-full w-[35px] h-[35px] text-white dark:text-black flex items-center justify-center">
+              <Image src={GoogleIcon} alt={"logo"} />
+            </div>
+          </Button>
         </div>
+
+
+
 
       </div>
     </div>

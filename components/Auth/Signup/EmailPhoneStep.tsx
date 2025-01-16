@@ -6,12 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { GoArrowRight } from "react-icons/go";
 
 type EmailPhoneStepProps = {
+  initialEmail: string;
+  initialPhoneNumber: string;
   onNext: (email: string, phoneNumber: string) => void;
 };
 
-const EmailPhoneStep: React.FC<EmailPhoneStepProps> = ({ onNext }) => {
-  const [email, setEmail] = useState("");
-  const [phoneNumber, updatePhoneNumber] = useState("");
+const EmailPhoneStep: React.FC<EmailPhoneStepProps> = ({ initialEmail,
+  initialPhoneNumber, onNext }) => {
+  const [email, setEmail] = useState<string>(initialEmail);
+  const [phoneNumber, setPhoneNumber] = useState<string>(initialPhoneNumber);
 
   const handleNext = () => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -19,7 +22,7 @@ const EmailPhoneStep: React.FC<EmailPhoneStepProps> = ({ onNext }) => {
       toast.error("Please enter a valid email address.");
       return;
     }
-    const phoneRegex = /^[0-9]{10}$/; 
+    const phoneRegex = /^[0-9]{10}$/;
     if (!phoneNumber || !phoneRegex.test(phoneNumber)) {
       toast.error("Please enter a valid 10-digit phone number.");
       return;
@@ -28,7 +31,7 @@ const EmailPhoneStep: React.FC<EmailPhoneStepProps> = ({ onNext }) => {
     onNext(email, phoneNumber);
   };
 
-  
+
   return (
     <div className="flex flex-grow flex-col space-y-6 p-5 dark:bg-[#1e1e1e] h-[365px] ">
       <ToastContainer />
@@ -54,7 +57,7 @@ const EmailPhoneStep: React.FC<EmailPhoneStepProps> = ({ onNext }) => {
         <input
           type="text"
           value={phoneNumber}
-          onChange={(e) => updatePhoneNumber(e.target.value)}
+          onChange={(e) => setPhoneNumber(e.target.value)}
           placeholder="Phone Number"
           className="font-medium block w-full h-[44px] px-4 py-2 rounded-[25px] bg-white dark:bg-[#333333] text-sm shadow-sm focus:outline-none border border-[#9B9797]"
         />
