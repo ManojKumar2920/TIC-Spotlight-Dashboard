@@ -22,7 +22,7 @@ const userSchema = new Schema<IUser>(
     },
     password: {
         type: String,
-        required: [true, "Password is required"],
+        // required: [true, "Password is required"],
         minlength: 8,
       },
     phoneNumber: {
@@ -32,24 +32,33 @@ const userSchema = new Schema<IUser>(
     companyName: {
       type: String,
       required: false,
+      default: ""
     },
     gstn: {
       type: String,
       required: false,
+      default: ""
     },
     companyAddress: {
       type: String,
       required: false,
+      default: ""
     },
     billingAddress: {
       type: String,
       required: false,
+      default: ""
     },
     role: {
       type: String,
       enum: ["user", "admin", "moderator"], 
       default: "user",
     },
+    companyLogo:{
+      type: String,
+      default: ""
+    },
+
     isVerified: { 
       type: Boolean, 
       default: false 

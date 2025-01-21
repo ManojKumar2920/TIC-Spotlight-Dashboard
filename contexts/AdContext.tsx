@@ -1,12 +1,29 @@
 import React, { createContext, useState, useContext } from "react";
 
 type Ad = {
-  name: string;
-  adruns: number;
+  _id: string;
+  userId: string;
+  adType: string;
+  campaignName: string;
+  startDate: string;
+  endDate: string;
+  totalBudget: number;
+  totalCars: number;
+  details: string;
+  location: string;
+  frequency: string;
+  timeSlot: string;
+  imageUrl: string;
+  totalHours: number;
+  ratePerHour: number;
   status: string;
-  date: string;
-  time: string;
-  totalhours: string;
+  totalAmount: number;
+  cgst: number;
+  kgst: number;
+  gst: number;
+  sgst: number;
+  grandTotal: number;
+  createdAt: Date;
 };
 
 type AdContextType = {

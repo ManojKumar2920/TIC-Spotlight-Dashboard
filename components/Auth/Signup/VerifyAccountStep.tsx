@@ -43,8 +43,7 @@ const VerifyAccountStep: React.FC<VerifyAccountStepProps> = ({ email, password, 
     if (code.every((digit) => digit)) {
       const otp = code.join("");
       const userDetails = { email, emailOtp: otp, password, phoneNumber, name };
-
-      // console.log("Details to be sent:", userDetails);
+      
       try {
         const response = await axios.post("/api/signup", userDetails);
         if (response.data.message === "User created successfully") {

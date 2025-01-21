@@ -5,7 +5,7 @@ import Link from 'next/link';
 const CampaignTopNav = () => {
   return (
     <div className="flex items-center justify-between h-[48px] bg-transparent text-black dark:text-white px-4">
-            <div className="text-lg font-medium">Create a New Ad</div>
+            <div className="font-bold leading-[26px] text-2xl md:font-bold  md:leading-[48px]">Create a New Ad</div>
 
             <div className="flex items-center space-x-5">
               <Link href={'/'}>

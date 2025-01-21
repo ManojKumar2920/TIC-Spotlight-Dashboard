@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import connectDB from "@/lib/db";
-import User from "@/models/User";
+import Campaigns from "@/models/campaigns.model";
 
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET as string;
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET as string;
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     // Connect to the database
     await connectDB();
@@ -24,58 +24,52 @@ export async function GET(req: NextRequest) {
     }
 
     try {
-      // Verify refresh token
+      // Verify the refresh token
       const decoded = jwt.verify(refreshToken.value, REFRESH_TOKEN_SECRET) as {
         userId: string;
         email: string;
       };
 
-      // Find user
-      const user = await User.findOne({ email: decoded.email })
-        .select('name email phoneNumber role companyName companyAddress billingAddress gstn createdAt updatedAt');
+      // Extract the data from the request body
+      const body = await req.json();
 
-      if (!user) {
-        return NextResponse.json(
-          { message: "Unauthorized: User not found" },
-          { status: 401 }
-        );
-      }
+      // Create a new campaign document
+      const newCampaign = new Campaigns({
+        userId: decoded.userId,
+        adType: body.adType,
+        campaignName: body.campaignName,
+        startDate: body.startDate,
+        endDate: body.endDate,
+        totalBudget: body.totalBudget,
+        totalCars: body.totalCars,
+        details: body.details,
+        location: body.location,
+        frequency: body.frequency,
+        timeSlot: body.timeSlot,
+        imageUrl: body.imageUrl,
+        totalHours: body.totalHours,
+        ratePerHour: body.ratePerHour,
+        status: body.status,
+        date: body.date,
+        totalAmount: body.totalAmount,
+        cgst: body.cgst,
+        kgst: body.kgst,
+        gst: body.gst,
+        sgst: body.sgst,
+        grandTotal: body.grandTotal,
+      });
 
-      // Generate new access token
-      const accessToken = jwt.sign(
+      // Save the campaign to the database
+      await newCampaign.save();
+
+      // Return a successful response with campaign data
+      return NextResponse.json(
         {
-          userId: user._id,
-          email: user.email,
+          message: "Campaign created successfully",
+          campaign: newCampaign,
         },
-        ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m" }
+        { status: 201 }
       );
-
-      // Create response with user data
-      const response = NextResponse.json(
-        {
-          user: {
-            name: user.name,
-            email: user.email,
-            phoneNumber: user.phoneNumber,
-            isVerified:user.isVerified,
-            role: user.role,
-            companyName:user.companyName,
-            companyAddress:user.companyAddress,
-            billingAddress:user.billingAddress,
-            gstn:user.gstn,
-
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt
-          }
-        },
-        { status: 200 }
-      );
-
-      // Set new access token in Authorization header
-      response.headers.set("Authorization", `Bearer ${accessToken}`);
-
-      return response;
 
     } catch (error) {
       // Handle invalid or expired refresh token
@@ -92,7 +86,6 @@ export async function GET(req: NextRequest) {
     }
 
   } catch (error) {
-
     return NextResponse.json(
       {
         message: "Internal server error",

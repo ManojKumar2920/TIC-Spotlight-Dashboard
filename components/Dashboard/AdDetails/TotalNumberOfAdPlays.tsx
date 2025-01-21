@@ -1,4 +1,3 @@
-
 "use client"
 
 import { TrendingUp } from "lucide-react"
@@ -21,7 +20,7 @@ import {
 import { ChartConfig, ChartContainer } from "@/components/ui/chart"
 
 const chartData = [
-  { browser: "safari", visitors: 1260, fill: "hsl(var(--chart-1))" },
+  { browser: "safari", visitors: 10, fill: "hsl(var(--chart-1))" },
 ]
 
 const chartConfig = {
@@ -34,23 +33,23 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function TotalRunAdsComponent() {
+export function NumberofAdPlaysComponent() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Total Ad Runs (in hr)</CardTitle>
+        <CardTitle>Total Number of Ad plays</CardTitle>
       </CardHeader>
-      <CardContent className="flex-1 pb-0 mt-10">
+      <CardContent className="flex-1 pb-0 mt-9">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
         >
           <RadialBarChart
             data={chartData}
-            startAngle={180} // Start angle for the horse-shoe shape
-            endAngle={0} // End angle for the horse-shoe shape
-            innerRadius={110}
-            outerRadius={185}
+            startAngle={190} 
+            endAngle={-10}
+            innerRadius={90}
+            outerRadius={120}
           >
             <PolarGrid
               gridType="circle"
@@ -62,7 +61,7 @@ export function TotalRunAdsComponent() {
             <RadialBar
               dataKey="visitors"
               background={{ fill: "var(--background-muted)" }}
-              cornerRadius={0} // Optional: Add rounding for bars
+              cornerRadius={9}
             />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
@@ -80,14 +79,14 @@ export function TotalRunAdsComponent() {
                           y={viewBox.cy}
                           className="fill-foreground text-4xl font-bold bg-white text-white"
                         >
-                          
+                          {chartData[0].visitors.toLocaleString()} Ad
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground bg-white text-white"
                         >
-                          
+                        
                         </tspan>
                       </text>
                     )
@@ -104,12 +103,16 @@ export function TotalRunAdsComponent() {
             className="inline-block w-3 h-3 rounded-full bg-blue-700"
             aria-label="AdRuns"
           ></span>
-          <span className="text-sm text-muted-foreground">Number of Ad Runs</span>
+          <span className="text-sm text-muted-foreground">AdRuns</span>
         </div>
-
+        <div className="flex items-center space-x-2">
+          <span
+            className="inline-block w-3 h-3 rounded-full bg-gray-200"
+            aria-label="Balance"
+          ></span>
+          <span className="text-sm text-muted-foreground">Balance</span>
+        </div>
       </CardFooter>
     </Card>
   )
 }
-
-

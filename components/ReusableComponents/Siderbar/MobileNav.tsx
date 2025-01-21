@@ -1,3 +1,5 @@
+"use Client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { CompanyLogo} from "../Icon";
@@ -6,10 +8,33 @@ import { NavContents } from "./NavContent";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeSwitch from "../ThemeSwitch";
+import { signout } from "@/components/Api/Api";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const MobileNav: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+
+    const handleSignout = async () => {
+      try {
+        const loadingToast = toast.loading("Logging out...");
+        const success = await signout();
+        toast.dismiss(loadingToast);
+        if (success) {
+          toast.success("Logged out successfully!");
+          router.push("/auth/signin");
+        } else {
+          toast.error("Error logging out. Please try again.");
+        }
+      } catch (err) {
+        toast.dismiss();
+        toast.error("Error logging out. Please try again.");
+        console.error("Error logging out:", err);
+      }
+    };
 
   return (
     <div className="md:hidden">
@@ -40,27 +65,33 @@ const MobileNav: React.FC = () => {
             </div>
 
             <ul className="space-y-4">
-              {NavContents.map((item) => (
-                <Link href={item.href} key={item.key}>
-                  <li
-                    className={`mb-2 flex items-center hover:bg-[#4C88ED33] rounded pl-10 h-11
-                                ${
-                                  pathname === item.href ? "bg-[#4C88ED33]" : ""
-                                }`}
-                  >
-                    <div
-                      className={`mr-3 md-1 ${
-                        pathname === item.href ? "text-[#4C89E9]" : "text-white"
-                      }`}
-                    >
-                      {item.icon}
-                    </div>
-                    <span className="flex items-center">{item.text}</span>
-                  </li>
+            {NavContents.map((item) => (
+            <li
+              key={item.key}
+              className={`mb-2 flex items-center hover:bg-[#4C88ED33] rounded pl-10 h-11 ${
+                pathname === item.href ? "bg-[#4C88ED33]" : ""
+              }`}
+            >
+              <div
+                className={`mr-3 md-1 ${
+                  pathname === item.href ? "text-[#4C89E9]" : "text-white"
+                }`}
+              >
+                {item.icon}
+              </div>
+              {item.text === "Logout" ? (
+                <button onClick={handleSignout} className="flex items-center">
+                  {item.text}
+                </button>
+              ) : (
+                <Link href={item.href}>
+                  <span className="flex items-center">{item.text}</span>
                 </Link>
-              ))}
+              )}
+            </li>
+          ))}
             </ul>
-            <div className="pl-10 mt-3">
+            <div className="pl-10 mt-4">
               <ThemeSwitch />
             </div>
           </div>

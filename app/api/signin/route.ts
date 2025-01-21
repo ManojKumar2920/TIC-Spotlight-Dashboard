@@ -65,6 +65,8 @@ export async function POST(req: NextRequest) {
       { expiresIn: "30d" }
     );
 
+    
+
     // Create response with user data and access token
     const response = NextResponse.json(
       {
@@ -79,10 +81,7 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
 
-    // Updating to True if eresponse is successful
-    user.isVerified = true;
-    await user.save();
-
+    
     // Set refresh token in HTTP-only cookie
     const cookieStore = await cookies();
     cookieStore.set({

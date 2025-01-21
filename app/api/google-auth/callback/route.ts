@@ -49,6 +49,7 @@ export async function GET(req: Request) {
         email,
         name,
         role: "user",
+        isVerified: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       });

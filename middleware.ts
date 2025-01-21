@@ -6,7 +6,7 @@ export async function middleware(req: NextRequest) {
   console.log(`[Middleware] Request received for: ${pathname}`); // Log request path
 
   // Define route categories
-  const protectedRoutes = ["/admin"];
+  const protectedRoutes = ["/admin", "/dashboard", "/invoice", "/profile"];
   const adminRoutes = ["/admin"];
   const authPages = ["/auth/signin", "/auth/signup"];
 
@@ -35,7 +35,7 @@ export async function middleware(req: NextRequest) {
 
       if (!userResponse.ok) {
         console.warn("[Middleware] User not authenticated. Redirecting to /signin");
-        return NextResponse.redirect(new URL("/signin", req.url));
+        return NextResponse.redirect(new URL("/auth/signin", req.url));
       }
 
       const { user } = await userResponse.json();
@@ -64,7 +64,7 @@ export async function middleware(req: NextRequest) {
 
     if (protectedRoutes.some((route) => pathname.startsWith(route))) {
       console.warn("[Middleware] Error on protected route. Redirecting to /signin");
-      return NextResponse.redirect(new URL("/signin", req.url));
+      return NextResponse.redirect(new URL("/auth/signin", req.url));
     }
   }
 

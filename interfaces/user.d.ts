@@ -11,4 +11,7 @@ export interface IUser extends Document {
     isVerified: boolean;
     createdAt: Date;
     updatedAt: Date;
+    companyLogo:string;
+
   }
+

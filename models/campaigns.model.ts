@@ -3,74 +3,79 @@ import { ICampaigns } from "@/interfaces/campaigns";
 
 const campaignsSchema = new Schema<ICampaigns>(
   {
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      required: true,
-    },
+    userId: { type: Schema.Types.ObjectId, ref:"User" },
+    adType: { type: String, enum: ["static", "dynamic"] },
     campaignName: {
       type: String,
-      required: [true, "Campaign name is required"],
     },
     startDate: {
       type: Date,
-      required: [true, "Start date is required"],
     },
-    endDate: {
-      type: Date,
-      required: [true, "End date is required"],
-    },
+    endDate: { type: Date },
     totalBudget: {
       type: Number,
-      required: [true, "Total budget is required"],
+      required: function (this: ICampaigns) {
+        return this.adType === "dynamic";
+      },
     },
-    dailyBudget: {
+    totalCars: {
       type: Number,
-      required: [true, "Daily budget is required"],
+      required: function (this: ICampaigns) {
+        return this.adType === "static";
+      },
     },
     details: {
       type: String,
-      required: [true, "Details are required"],
-      maxlength: [500, "Details must not exceed 500 characters"],
     },
     location: {
       type: String,
-      required: [true, "Location is required"],
-    },
-    frequency: {
-      type: Number,
-      required: [true, "Frequency is required"],
     },
     timeSlot: {
       type: String,
-      required: [true, "Time slot is required"],
     },
     imageUrl: {
       type: String,
-      required: false,
     },
     createdAt: {
       type: Date,
+      default: Date.now,
     },
-    industry: {
-      type: String,
-      required: [true, "Industry is required"],
+    updatedAt: {
+      type: Date,
+      default: Date.now,
+    },
+    totalHours: {
+      type: Number,
+    },
+    ratePerHour: {
+      type: Number,
     },
     status: {
       type: String,
-      required: false,
+      enum: ["Active", "Pending", "Completed", "Approved"],
+      default: "Pending",
     },
-    rate: {
+    // date: {
+    //   type: Date,
+    //   default:Date.now
+    // },
+    totalAmount: {
       type: Number,
-      required: false,
     },
-    totalPlays: {
+    cgst: {
       type: Number,
-      required: false,
     },
-    dailyPlays: {
+    kgst: {
       type: Number,
-      required: false,
+    },
+    gst: {
+      type: Number,
+    },
+    sgst: {
+      type: Number,
+    },
+    grandTotal: {
+      type: Number,
     },
   },
   {

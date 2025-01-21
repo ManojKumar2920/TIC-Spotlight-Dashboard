@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
 
     await connectDB();
 
-    const { name, email, phoneNumber, emailOtp, password } = await req.json();
+    const { name, email, phoneNumber, emailOtp, password, companyName, companyAddress, gstn, billingAddress, companyLogo } = await req.json();
 
     if (!emailOtp) {
       if (!name || !email || !phoneNumber || !password) {
@@ -96,6 +96,12 @@ export async function POST(req: NextRequest) {
         email,
         phoneNumber,
         password: hashedPassword,
+        isVerified:true,
+        companyName,
+        gstn,
+        companyAddress,
+        billingAddress,
+        companyLogo
       });
 
       await newUser.save();
@@ -127,6 +133,11 @@ export async function POST(req: NextRequest) {
             name: newUser.name,
             email: newUser.email,
             role: newUser.role,
+            companyName: newUser.companyName,
+            gstn: newUser.gstn,
+            companyAddress: newUser.companyAddress,
+            billingAddress:newUser.billingAddress,
+            companyLogo:newUser.companyLogo
           },
           accessToken,
         },

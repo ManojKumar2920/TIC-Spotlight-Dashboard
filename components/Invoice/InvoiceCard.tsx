@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../ReusableComponents/Button";
 import { Download as DownloadIcon } from "lucide-react";
+
 type InvoiceCardProps = {
   title: string;
   dateRange: string;
-  totalScreenTime: string;
+  totalScreenTime: string; // Added prop for total screen time
   totalBudget: number;
   status: string;
   totalAmount: number;
@@ -17,6 +18,7 @@ type InvoiceCardProps = {
 const InvoiceCard: React.FC<InvoiceCardProps> = ({
   title,
   dateRange,
+  totalScreenTime,
   totalBudget,
   status,
   totalAmount,
@@ -33,9 +35,9 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({
   ];
 
   return (
-    <div className="relative border border-bg-[#F2E9E9] h-[402px] p-6 rounded-lg bg-white dark:border-[#1e1e1e] dark:bg-[#1e1e1e] shadow-md w-[271px] max-w-md">
+    <div className="relative border border-bg-[#F2E9E9] h-[420px] p-6 rounded-lg bg-white dark:border-[#1e1e1e] dark:bg-[#1e1e1e] shadow-md w-[271px] max-w-md">
       <div className="flex items-center justify-between mb-2">
-        <h2 className="font-bold text-base">{title}</h2>
+        <h2 className="font-bold text-base">{title} - Invoice</h2>
         <DownloadIcon className="text-black dark:text-white" />
       </div>
 
@@ -47,20 +49,26 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({
         <p className="text-xs text-[#000000] dark:text-white leading-19px font-medium">
           Total Budget: {totalBudget}₹
         </p>
+        <p className="text-xs text-[#000000] dark:text-white leading-19px font-medium">
+          Total Screen Time: {totalScreenTime}
+        </p>
       </div>
 
       <div className="flex mt-3 justify-start">
-        <p
-          className={`text-sm leading-[20px] flex items-center justify-center w-[88px] h-[28px] p-[4px_12px] rounded-[12px] opacity-100 ${
-            status === "Approved"
-              ? "bg-approval-custom-green text-[#94E9B8]"
-              : status === "Rejected"
-              ? "bg-reject-custom-red text-white"
-              : ""
-          }`}
-        >
-          {status}
-        </p>
+      <span
+                      className={`${status === 'Rejected'
+                          ? 'bg-red-200 text-red-600'
+                          : status === 'Pending'
+                            ? 'bg-gray-200 text-gray-700' 
+                            : status === 'Active'
+                              ? 'bg-green-200 text-green-600' 
+                              : status === 'Approved'
+                                ? 'bg-blue-200 text-blue-600' 
+                                : 'bg-transparent text-black' 
+                        } px-3 py-1 rounded-full text-sm`}
+                    >
+                      {status}
+                    </span>
       </div>
 
       <div className="mt-4 border-t pt-4 p-2">
@@ -76,8 +84,8 @@ const InvoiceCard: React.FC<InvoiceCardProps> = ({
       </div>
 
       <div className="flex border-t justify-between text-[10px] font-medium p-2">
-        <span className="mt-1 ">Grand Total INR</span>
-        <span className="mt-1 ">₹{grandTotal.toFixed(2)}</span>
+        <span className="mt-1">Grand Total INR</span>
+        <span className="mt-1">₹{grandTotal.toFixed(2)}</span>
       </div>
 
       <Button className="absolute bottom-6 right-6 flex justify-center items-center text-[#000000] dark:text-[#FFFFFF] text-xs border border-[#000000] dark:border-[#FFFFFF] w-[70px] h-[24px] bg-white dark:bg-[#333333]">

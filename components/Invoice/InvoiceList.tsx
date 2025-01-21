@@ -1,77 +1,92 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import InvoiceCard from "./InvoiceCard";
+import { format } from "date-fns";
+import { fetchUserCampaigns } from "../Api/Api";
+// Define the campaign interface
+interface Campaign {
+  campaignName: string;
+  startDate: string;
+  endDate: string;
+  totalBudget: number;
+  totalScreenTime: string;
+  status: string;
+  totalAmount: number;
+  cgst: number;
+  gst: number;
+  sgst: number;
+  kgst: number;
+  grandTotal: number;
+}
 
+// Component for listing invoices
 const InvoiceList = () => {
-  const invoices = [
-    {
-      title: "AD 1 - Invoice",
-      dateRange: "12 Dec to 14 Dec 2024",
-      totalBudget: 2200,
-      totalScreenTime: '3/hrs',
-      status: "Approved",
-      totalAmount: 2000,
-      cgst: 10,
-      gst: 20,
-      sgst: 3,
-      grandTotal: 2034,
-    },
-    {
-      title: "AD 2 - Invoice",
-      dateRange: "15 Dec to 18 Dec 2024",
-      totalBudget: 3000,
-      totalScreenTime: '5/hrs',
-      status: "Approved",
-      totalAmount: 2500,
-      cgst: 15,
-      gst: 25,
-      sgst: 5,
-      grandTotal: 2545,
-    },
-    {
-        title: "AD 3 - Invoice",
-        dateRange: "15 Dec to 18 Dec 2024",
-        totalBudget: 3000,
-        totalScreenTime: '5/hrs',
-        status: "Approved",
-        totalAmount: 2500,
-        cgst: 15,
-        gst: 25,
-        sgst: 5,
-        grandTotal: 2545,
-      },
-      {
-        title: "AD 4 - Invoice",
-        dateRange: "15 Dec to 18 Dec 2024",
-        totalBudget: 3000,
-        totalScreenTime: '5/hrs',
-        status: "Approved",
-        totalAmount: 2500,
-        cgst: 15,
-        gst: 25,
-        sgst: 5,
-        grandTotal: 2545,
-      },
-  ];
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  return (
-    <div className="flex flex-wrap gap-4 p-4">
-      {invoices.map((invoice, index) => (
-        <InvoiceCard
-          key={index}
-          title={invoice.title}
-          dateRange={invoice.dateRange}
-          totalScreenTime={invoice.totalScreenTime}
-          totalBudget={invoice.totalBudget}
-          status={invoice.status}
-          totalAmount={invoice.totalAmount}
-          cgst={invoice.cgst}
-          gst={invoice.gst}
-          sgst={invoice.sgst}
-          grandTotal={invoice.grandTotal}
-        />
-      ))}
-    </div>
-  );
+  const fetchCampaigns = async () => {
+    try {
+      setIsLoading(true);
+      setErrorMessage(null);
+      const campaigns = await fetchUserCampaigns();
+      if (campaigns?.length > 0) {
+        setCampaigns(campaigns);
+      } else {
+        setErrorMessage("No campaigns available.");
+      }
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "An unexpected error occurred."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchCampaigns();
+  }, []);
+
+  // Helper to format date ranges
+  const formatDateRange = (startDate: string, endDate: string) => {
+    const formattedStart = format(new Date(startDate), "MMM dd");
+    const formattedEnd = format(new Date(endDate), "MMM dd yyyy");
+    return `${formattedStart} to ${formattedEnd}`;
+  };
+
+  // Render function for content
+  const renderContent = () => {
+    if (isLoading) {
+      return <p>Loading campaigns...</p>;
+    }
+
+    if (errorMessage) {
+      return <p className="text-red-500">{errorMessage}</p>;
+    }
+
+    if (campaigns.length === 0) {
+      return <p>No campaigns available.</p>;
+    }
+
+    return campaigns.map((campaign, index) => (
+      <InvoiceCard
+        key={index}
+        title={campaign.campaignName}
+        dateRange={formatDateRange(campaign.startDate, campaign.endDate)}
+        totalScreenTime={campaign.totalScreenTime}
+        totalBudget={campaign.totalBudget}
+        status={campaign.status}
+        totalAmount={campaign.totalAmount}
+        grandTotal={campaign.grandTotal}
+        cgst={campaign.cgst}
+        sgst={campaign.sgst}
+        gst={campaign.gst}
+      />
+    ));
+  };
+
+  return <div className="flex flex-wrap gap-4 p-4">{renderContent()}</div>;
 };
 
 export default InvoiceList;

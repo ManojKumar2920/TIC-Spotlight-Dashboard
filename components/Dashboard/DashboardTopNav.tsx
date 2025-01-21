@@ -44,7 +44,7 @@ const DashboardTopNav = ({ title }: { title: string }) => {
                 className={cn(
                   "w-full justify-start text-left font-normal border-none",
                   !date &&
-                    "text-muted-foreground bg-[#FFFFFF] dark:bg-[#1e1e1e] h-[44px] rounded-[20px]"
+                  "text-muted-foreground bg-[#FFFFFF] dark:bg-[#1e1e1e] h-[44px] rounded-[20px]"
                 )}
               >
                 {date ? (
@@ -70,19 +70,22 @@ const DashboardTopNav = ({ title }: { title: string }) => {
 
         <div className="flex items-center space-x-5">
           {!isAuthenticated ? (
-            <Link href={"/signin"}>
-              <Button variant="outline" className="h-[44px] px-6">
-                Sign In
-              </Button>
+            <Link href={"/auth/signin"}>
+              <Button
+          className="bg-transparent text-black border border-black rounded-[30px] hover:bg-white"
+        >
+          Sign In
+        </Button>
             </Link>
           ) : (
             <>
+            <div>
+                <NotificationIcon className="w-5 h-5" />
+              </div>
               <div>
                 <ProfileIcon2 className="w-6 h-6" />
               </div>
-              <div>
-                <NotificationIcon className="w-5 h-5" />
-              </div>
+              
             </>
           )}
         </div>

@@ -8,18 +8,23 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { RadialChartComponent } from "@/components/Dashboard/RadialChart";
 import Button from "@/components/ReusableComponents/Button";
 import { Download as DownloadIcon } from "lucide-react";
 import dynamic from "next/dynamic";
-import Layout from '@/components/ReusableComponents/Siderbar/Layout'
+import Layout from "@/components/ReusableComponents/Siderbar/Layout";
 import { useAdDetails } from "@/contexts/AdContext";
 const Map = dynamic(() => import("@/components/Home/Map"), { ssr: false });
-
+import { format } from "date-fns";
+import { TotalRunAdsComponent } from "@/components/Dashboard/AdDetails/TotalRunAdsChart";
+import { BudgetComponent } from "@/components/Dashboard/AdDetails/TotalBudgetChart";
+import { NumberofAdPlaysComponent } from "@/components/Dashboard/AdDetails/TotalNumberOfAdPlays";
 
 const AdDetails: React.FC = () => {
   const { selectedAd } = useAdDetails();
+
   if (!selectedAd) return <div>No Ad Selected</div>;
+  const formattedStartDate = format(new Date(selectedAd.startDate), "MMM dd");
+  const formattedEndDate = format(new Date(selectedAd.endDate), "MMM dd yyyy");
 
   return (
     <Layout>
@@ -38,13 +43,13 @@ const AdDetails: React.FC = () => {
 
         <div className="flex flex-col md:flex-row gap-4 p-2">
           <div className="flex-1">
-            <RadialChartComponent />
+            <BudgetComponent />
           </div>
           <div className="flex-1">
-            <RadialChartComponent />
+            <TotalRunAdsComponent />
           </div>
           <div className="flex-1">
-            <RadialChartComponent />
+            <NumberofAdPlaysComponent />
           </div>
         </div>
 
@@ -55,12 +60,12 @@ const AdDetails: React.FC = () => {
             <div className="flex flex-col space-y-2 items-start">
               <h2 className="text-base font-bold">Ad Details</h2>
               <p className="text-sm">AD Status: {selectedAd.status}</p>
-              <p className="text-sm">Preferred timing: {selectedAd.time}</p>
-              <p className="text-sm">
-                Preferred Location: KK Nagar, T Nagar, Anna Nagar
-              </p>
+              <p className="text-sm">Preferred timing: {selectedAd.timeSlot}</p>
+              <p className="text-sm">Prefered Location:{selectedAd.location}</p>
               <span className="bg-gray-200 dark:bg-[#2a2a2a] px-2 py-1 rounded-sm inline">
-                Date: {selectedAd.date}
+                <p className="text-xs">
+                  {formattedStartDate} to {formattedEndDate}
+                </p>
               </span>
             </div>
 
@@ -89,10 +94,7 @@ const AdDetails: React.FC = () => {
           </div>
         </div>
       </div>
-
-
     </Layout>
-
   );
 };
 

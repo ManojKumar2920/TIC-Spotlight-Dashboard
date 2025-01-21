@@ -23,4 +23,5 @@ export const LocationData = [
     { label: 'Aksa Bnheeach', value: 'aksa_beach' },
     { label: 'Kari Caves', value: 'kanheri_caves' },
     { label: 'Sanjay Gandhi National Park', value: 'sanjay_gandhi_national_park' },
+    { label: 'Mumbai', value:'Mumbai'},
 ];
