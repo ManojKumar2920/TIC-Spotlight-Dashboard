@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import { uploadToR2 } from "@/lib/r2";
 
 type OrderSummaryFormProps = {
     onBack: () => void;
@@ -35,115 +36,116 @@ const OrderSummary: React.FC<OrderSummaryFormProps> = ({
     }, [campaignDetails]);
 
     const calculateTotalHoursAndAmount = (details: any) => {
-        const start = new Date(details.startDate);
-        const end = new Date(details.endDate);
-
+        // const start = new Date(details.startDate);
+        // const end = new Date(details.endDate);
+    
         // Calculate total days
-        const totalDays = Math.ceil(
-            (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
-        );
-
+        // const totalDays = Math.ceil(
+        //     (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
+        // );
+    
         // Define hours per day based on timeSlot
-        const timeSlotHoursMap: { [key: string]: number } = {
-            "24/7": 24,
-            "7AM - 11PM": 16,
-            "1PM - 11PM": 10,
-            "7AM - 1PM": 6,
-        };
-
-        // Get hours per day from the timeSlot
-        const hoursPerDay = timeSlotHoursMap[details.timeSlot] || 0; 
-
+        // const timeSlotHoursMap: { [key: string]: number } = {
+        //     "24/7": 24,
+        //     "7AM - 11PM": 16,
+        //     "1PM - 11PM": 10,
+        //     "7AM - 1PM": 6,
+        // };
+    
         // // Calculate total hours
         // const totalHours = totalDays * hoursPerDay;
         // // Calculate total amount
-        // const ratePerHour = 360; 
+        // const ratePerHour = 360;
         // const totalAmount = totalHours * ratePerHour;
-        const totalAmount = parseFloat(campaignDetails.totalBudget); 
+        const totalAmount = parseFloat(campaignDetails.totalBudget);
         const ratePerHour = 360;
-        const totalHours = totalAmount / ratePerHour
+        const totalHours = totalAmount / ratePerHour;
         const totalHoursRounded = totalHours.toFixed(2);
-
+    
         // Calculate tax breakdown
         const cgst = totalAmount * 0.09;
         const sgst = totalAmount * 0.09;
-        const kgst = totalAmount * 0.0; 
-        const gst = totalAmount * 0.18; 
-
+        const kgst = totalAmount * 0.0;
+        const gst = totalAmount * 0.18;
+    
         setCalculatedDetails({
-            ...details,
-            //   totalDays,
-            totalHours,
-            totalAmount,
+          ...details,
+          //   totalDays,
+          totalHours,
+          totalAmount,
         });
-
+    
         setTotalHours(totalHoursRounded || "N/A");
         setTotalAmount(totalAmount);
         setCGST(cgst);
         setSGST(sgst);
         setKGST(kgst);
         setGST(gst);
-    };
-
-    const taxDetails = [
+      };
+    
+      const taxDetails = [
         { label: "Total Amount", value: `₹${totalAmount}` },
         { label: "CGST (9%)", value: `₹${cgst.toFixed(2)}` },
         { label: "SGST (9%)", value: `₹${sgst.toFixed(2)}` },
         { label: "KGST (0%)", value: `₹${kgst.toFixed(2)}` },
         { label: "Total GST (18%)", value: `₹${gst.toFixed(2)}` },
-    ];
-
-    const grandTotal = (totalAmount + gst);
-
-    const Hours = [
+      ];
+    
+      const grandTotal = totalAmount + gst;
+    
+      const Hours = [
         { value: totalHours, label: "No.of hours", image: ClockIcon },
         { value: "360 /-", label: "Rate / hour", image: RupeeICon },
-    ];
-
-
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            console.log("Selected file:", file);
-            const url = URL.createObjectURL(file);
-            setImageUrl(url);
-        }
-    };
-
-    const handleBrowseClick = () => {
+      ];
+    
+      const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => { 
+        if (event.target.files) { 
+            const file = event.target.files[0]; 
+            if (!file) return; try { 
+                const arrayBuffer = await file.arrayBuffer(); 
+                const buffer = Buffer.from(arrayBuffer); 
+                const mimeType = file.type; 
+                const key = `${Date.now()}_${file.name}`; 
+                const uploadedFileUrl = await uploadToR2(key, buffer, mimeType); 
+                setImageUrl(uploadedFileUrl); 
+                console.log('File uploaded successfully:', uploadedFileUrl); 
+            } catch (error) { 
+                console.error('Error uploading file:', error); } } }; 
+    
+    
+      const handleBrowseClick = () => {
         fileInputRef.current?.click();
-    };
-
-    const handleSubmit = async () => {
+      };
+    
+      const handleSubmit = async () => {
         const campaignData = {
-            ...calculatedDetails,
-            totalAmount,
-            cgst,
-            sgst,
-            kgst,
-            gst,
-            grandTotal,
-            imageUrl,
+          ...calculatedDetails,
+          totalAmount,
+          cgst,
+          sgst,
+          kgst,
+          gst,
+          grandTotal,
+          imageUrl,
         };
     
-        // Log the campaign data to see the values before submitting
         console.log("Campaign Data to be saved:", campaignData);
     
         try {
-            // Sending the campaign data to the backend using axios POST request
-            const response = await axios.post(`/api/campaign`, campaignData);
+          // Sending the campaign data to the backend using axios POST request
+          const response = await axios.post(`/api/campaign`, campaignData);
     
-            if (response.status === 201) {
-                toast.success("Campaign saved successfully!");
-                router.push("/dashboard"); 
-            } else {
-                toast.error("Failed to save campaign. Please try again."); // Error message with Toastify
-            }
-        } catch (error) {
-            console.error("Error saving campaign:", error);
+          if (response.status === 201) {
+            toast.success("Campaign saved successfully!");
+            router.push("/dashboard");
+          } else {
             toast.error("Failed to save campaign. Please try again."); // Error message with Toastify
+          }
+        } catch (error) {
+          console.error("Error saving campaign:", error);
+          toast.error("Failed to save campaign. Please try again."); // Error message with Toastify
         }
-    };
+      };
 
     return (
         <div>
