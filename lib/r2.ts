@@ -14,14 +14,14 @@ const r2Client = new S3Client({
 export const uploadToR2 = async (key: string, file: Buffer | Uint8Array | Blob | string, mimeType: string) => {
   try {
     const command = new PutObjectCommand({
-      Bucket: process.env.NEXT_PUBLIC_R2_BUCKET_NAME!,
+      Bucket: process.env.R2_BUCKET_NAME!,
       Key: key,
       Body: file,
       ContentType: mimeType,
     });
 
     await r2Client.send(command);
-    return `https://${process.env.NEXT_PUBLIC_R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.NEXT_PUBLIC_R2_BUCKET_NAME}/${key}`;
+    return `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${process.env.R2_BUCKET_NAME}/${key}`;
   } catch (error) {
     console.error("Error uploading to R2:", error);
     throw new Error("Failed to upload file to R2.");
